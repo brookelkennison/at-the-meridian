@@ -1,0 +1,205 @@
+import Link from 'next/link'
+import Reveal from '@/components/Reveal'
+import ImageSpot from '@/components/ImageSpot'
+import { images } from '@/lib/images'
+
+export const metadata = {
+  title: 'Blog — At The Meridian',
+  description: 'Thoughts on technology, growth, SEO, paid acquisition, and the systems that compound.',
+}
+
+const blogPosts = [
+  {
+    id: 1,
+    title: 'Why Your Business Needs a Custom Booking Platform',
+    category: 'Technology',
+    date: 'Mar 15, 2026',
+    excerpt:
+      'Off-the-shelf booking tools are costing you money. Here’s why a custom platform pays for itself.',
+    img: images.blogOne,
+    featured: true,
+  },
+  {
+    id: 2,
+    title: 'The Real Cost of a Cheap Website',
+    category: 'Strategy',
+    date: 'Mar 8, 2026',
+    excerpt:
+      'That $500 website isn’t saving you money. It’s costing you clients. Here’s the math.',
+    img: images.blogTwo,
+  },
+  {
+    id: 3,
+    title: 'Ads Are the Accelerant, Not the Foundation',
+    category: 'Paid Acquisition',
+    date: 'Feb 28, 2026',
+    excerpt:
+      'Why we never turn on paid traffic until the site converts — and how we protect every dollar of ad spend.',
+    img: images.blogThree,
+  },
+  {
+    id: 4,
+    title: 'Conversion Rate Optimization: Beyond the Basics',
+    category: 'Strategy',
+    date: 'Feb 20, 2026',
+    excerpt:
+      'Most businesses optimize for traffic. Smart businesses optimize for conversions.',
+    img: images.projectThree,
+  },
+  {
+    id: 5,
+    title: 'Hand-Coded vs. Drag-and-Drop: The SEO Truth',
+    category: 'SEO',
+    date: 'Feb 12, 2026',
+    excerpt:
+      'Why lean, semantic code is what Google actually rewards — and what builders quietly cost you.',
+    img: images.projectFive,
+  },
+  {
+    id: 6,
+    title: 'Why We Build on Next.js and Payload CMS',
+    category: 'Insights',
+    date: 'Feb 5, 2026',
+    excerpt:
+      'There are hundreds of ways to build a website. Here’s why we chose this stack.',
+    img: images.projectSix,
+  },
+]
+
+const featuredPost = blogPosts[0]
+const gridPosts = blogPosts.slice(1)
+
+export default function BlogPage() {
+  return (
+    <div className="bg-bg text-ink font-sans font-light antialiased">
+      {/* ─────────── Hero ─────────── */}
+      <header className="relative pt-36 pb-16 lg:pt-44 lg:pb-20 overflow-hidden">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140vmin] h-[140vmin]"
+          style={{
+            background:
+              'radial-gradient(circle, rgba(125, 211, 252, 0.12) 0%, transparent 50%)',
+          }}
+        />
+        <div className="max-w-site mx-auto px-5 sm:px-10 lg:px-20 relative z-10">
+          <span className="eyebrow-dark">Insights</span>
+          <h1 className="font-serif font-light tracking-tight leading-[0.98] text-[44px] sm:text-7xl lg:text-8xl mt-7 mb-8 max-w-[16ch]">
+            On growth, <em className="hero-italic-grad font-light">built to last.</em>
+          </h1>
+          <p className="text-ink-dim text-base sm:text-lg max-w-[52ch] leading-relaxed">
+            Thoughts on technology, SEO, paid acquisition, and the systems that compound.
+          </p>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
+      </header>
+
+      {/* ─────────── Featured ─────────── */}
+      <section className="border-t border-line py-16 lg:py-24">
+        <div className="max-w-site mx-auto px-5 sm:px-10 lg:px-20">
+          <Reveal>
+            <Link
+              href="#"
+              className="group grid lg:grid-cols-2 gap-px bg-line border border-line rounded-2xl overflow-hidden hover:border-accent/30 transition-colors"
+            >
+              <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-[380px] overflow-hidden bg-bg-3">
+                <ImageSpot
+                  className="!rounded-none !border-0 transition-transform duration-700 group-hover:scale-105"
+                  label="Article image"
+                  sub=""
+                  src={featuredPost.img}
+                  alt={featuredPost.title}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+              <div className="bg-bg-2 p-8 lg:p-12 flex flex-col justify-center">
+                <span className="text-[10px] tracking-[0.22em] uppercase text-accent border border-accent/40 rounded-full px-3 py-1.5 self-start mb-6">
+                  {featuredPost.category}
+                </span>
+                <h2 className="font-serif font-light text-2xl lg:text-4xl tracking-tight leading-snug mb-4 max-w-[20ch] group-hover:text-accent transition-colors">
+                  {featuredPost.title}
+                </h2>
+                <p className="text-xs text-ink-faint mb-5">{featuredPost.date}</p>
+                <p className="text-ink-dim text-base leading-relaxed mb-7 max-w-[52ch]">
+                  {featuredPost.excerpt}
+                </p>
+                <span className="text-accent text-sm inline-flex items-center gap-2">
+                  Read article <span aria-hidden>→</span>
+                </span>
+              </div>
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ─────────── Grid ─────────── */}
+      <section className="pb-24 lg:pb-32">
+        <div className="max-w-site mx-auto px-5 sm:px-10 lg:px-20">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {gridPosts.map((post, i) => (
+              <Reveal key={post.id} delay={(i % 3) * 70}>
+                <Link
+                  href="#"
+                  className="group bg-bg-3 border border-line rounded-2xl overflow-hidden hover:border-accent/40 hover:-translate-y-1 transition-all flex flex-col h-full"
+                >
+                  <div className="relative aspect-[16/10] border-b border-line overflow-hidden">
+                    <ImageSpot
+                      className="!rounded-none !border-0 transition-transform duration-700 group-hover:scale-105"
+                      label="Article image"
+                      sub=""
+                      src={post.img}
+                      alt={post.title}
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                    />
+                  </div>
+                  <div className="p-6 flex flex-col flex-1">
+                    <span className="text-[10px] tracking-[0.2em] uppercase text-accent mb-4">
+                      {post.category}
+                    </span>
+                    <h3 className="font-serif font-light text-xl tracking-tight leading-snug mb-3 group-hover:text-accent transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="text-sm text-ink-dim leading-relaxed mb-5">
+                      {post.excerpt}
+                    </p>
+                    <div className="mt-auto pt-4 border-t border-line flex items-center justify-between">
+                      <span className="text-[11px] text-ink-faint">{post.date}</span>
+                      <span className="text-accent text-sm" aria-hidden>→</span>
+                    </div>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────── Newsletter ─────────── */}
+      <section className="border-t border-line py-20 lg:py-28">
+        <div className="max-w-site mx-auto px-5 sm:px-10 lg:px-20">
+          <div className="surface-glow border border-line rounded-2xl p-10 lg:p-16 text-center">
+            <h2 className="font-serif font-light text-3xl sm:text-4xl tracking-tight mb-3">
+              Stay in the loop.
+            </h2>
+            <p className="text-ink-dim text-sm mb-8">
+              No spam. Just insights on technology and growth.
+            </p>
+            <form className="flex flex-col sm:flex-row gap-3 justify-center items-center max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="w-full sm:flex-1 bg-bg-3 border border-line text-ink placeholder:text-ink-faint rounded-full px-5 py-3 text-sm focus:outline-none focus:border-accent transition-colors"
+              />
+              <button
+                type="submit"
+                className="w-full sm:w-auto bg-accent text-bg text-sm font-medium px-6 py-3 rounded-full hover:bg-accent-bright transition-colors whitespace-nowrap"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}

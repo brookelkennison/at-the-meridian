@@ -1,0 +1,280 @@
+import Link from 'next/link'
+import Reveal from '@/components/Reveal'
+import ParallaxBackdrop from '@/components/ParallaxBackdrop'
+import { images } from '@/lib/images'
+
+export const metadata = {
+  title: 'Work — At The Meridian',
+  description:
+    'Selected engagements from At The Meridian — conversion-engineered websites and growth systems built for established service businesses.',
+}
+
+/**
+ * Portfolio / Work page — dark theme.
+ *
+ * These are PLACEHOLDER case-study slots. Each card is built to drop a real
+ * project into: replace `img` with a screenshot of the live build, swap the
+ * client name, and update the outcome metrics. The detailed build brief for
+ * each concept lives in PORTFOLIO-BRIEFS.md at the project root.
+ */
+
+type CaseStudy = {
+  client: string
+  industry: string
+  title: string
+  summary: string
+  outcomes: { metric: string; label: string }[]
+  tags: string[]
+  img: string
+  featured?: boolean
+}
+
+const caseStudies: CaseStudy[] = [
+  {
+    client: 'Verdant Grounds',
+    industry: 'Landscape Design',
+    title: 'An editorial portfolio that books the consult.',
+    summary:
+      'A photo gallery became a pre-qualifying sales engine. Project stories reframed around the buyer’s transformation, neighborhood SEO pages, and a booking flow that filters price-shoppers before they reach the calendar.',
+    outcomes: [
+      { metric: '+312%', label: 'Organic traffic' },
+      { metric: '60%+', label: 'Pre-qualified consults' },
+      { metric: '3.4×', label: 'Consult-to-close' },
+    ],
+    tags: ['Landscape', 'Local SEO', 'Booking'],
+    img: images.coastalPath,
+    featured: true,
+  },
+  {
+    client: 'Stoneform Masonry',
+    industry: 'Concrete & Masonry',
+    title: 'From commodity bidder to the premium specialist.',
+    summary:
+      'Repositioned around the highest-margin specialty — stamped patios and outdoor kitchens — with project-type landing pages that intercept high-intent search and intake that routes price-shoppers away.',
+    outcomes: [
+      { metric: '2.5×', label: 'Avg. project value' },
+      { metric: '−48%', label: 'Wrong-fit leads' },
+      { metric: 'Top 3', label: 'Local rankings' },
+    ],
+    tags: ['Masonry', 'Positioning', 'Lead Filtering'],
+    img: images.projectSix,
+  },
+  {
+    client: 'Meridian Build Co.',
+    industry: 'General Contracting',
+    title: 'Predictable pipeline for unpredictable projects.',
+    summary:
+      'A referral-dependent GC got a system: authority positioning, a long-cycle CRM that nurtures 6-month decisions, and paid + local SEO run together and tracked all the way to closed projects.',
+    outcomes: [
+      { metric: '4.2×', label: 'Qualified inbound' },
+      { metric: '90 days', label: 'To measurable ROI' },
+      { metric: '100%', label: 'Spend tracked to revenue' },
+    ],
+    tags: ['Construction', 'CRM', 'Paid + SEO'],
+    img: images.projectFive,
+  },
+  {
+    client: 'Atelier North',
+    industry: 'Interior Design',
+    title: 'A magazine-grade site that filters for premium clients.',
+    summary:
+      'Editorial design system with copy that signals tier without quoting prices — so the right buyers self-select. Style and project-type pages finally got indexed, and consults land on the calendar already qualified.',
+    outcomes: [
+      { metric: '70%+', label: 'Premium-tier inquiries' },
+      { metric: '3.1×', label: 'Conversion lift' },
+      { metric: 'Booked', label: 'Consults, not forms' },
+    ],
+    tags: ['Interior Design', 'Editorial', 'CRO'],
+    img: images.modernCoastal,
+  },
+  {
+    client: 'Cedar & Cliff Homes',
+    industry: 'Custom Home Builders',
+    title: 'A flagship site for flagship homes.',
+    summary:
+      'Cinematic build that matches the homes, a 12–24 month nurture sequence, and custom intake qualifying for budget, lot, and architectural fit — so the buyer trusts you before the first call.',
+    outcomes: [
+      { metric: '+218%', label: 'Qualified inquiries' },
+      { metric: '24 mo', label: 'Nurture window' },
+      { metric: 'Premium', label: 'Tier positioning' },
+    ],
+    tags: ['Custom Homes', 'Brand', 'Long-Cycle CRM'],
+    img: images.projectFour,
+  },
+  {
+    client: 'Renova Kitchen & Bath',
+    industry: 'Remodelers',
+    title: 'Every kitchen lead they should have had.',
+    summary:
+      'Project-type SEO for kitchen, bath, and whole-home; paid acquisition tuned to qualified-lead cost; and one CRM unifying Houzz, paid, organic, and referrals so nothing leaks.',
+    outcomes: [
+      { metric: '−60%', label: 'Cost per lead' },
+      { metric: 'Unified', label: 'All channels, one CRM' },
+      { metric: 'Top', label: 'Of-search authority' },
+    ],
+    tags: ['Remodeling', 'SEO', 'Lead Gen'],
+    img: images.hotelPool,
+  },
+]
+
+export default function PortfolioPage() {
+  return (
+    <div className="bg-bg text-ink font-sans font-light antialiased">
+      {/* ─────────── Hero ─────────── */}
+      <header className="relative pt-36 pb-20 lg:pt-44 lg:pb-28 overflow-hidden">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140vmin] h-[140vmin]"
+          style={{
+            background:
+              'radial-gradient(circle, rgba(125, 211, 252, 0.12) 0%, transparent 50%)',
+          }}
+        />
+        <div className="max-w-site mx-auto px-5 sm:px-10 lg:px-20 relative z-10">
+          <span className="eyebrow-dark">Selected Work</span>
+          <h1 className="font-serif font-light tracking-tight leading-[0.98] text-[44px] sm:text-7xl lg:text-8xl mt-7 mb-8 max-w-[15ch]">
+            Engagements that{' '}
+            <em className="hero-italic-grad font-light">compounded.</em>
+          </h1>
+          <p className="text-ink-dim text-base sm:text-lg max-w-[58ch] leading-relaxed">
+            Each one started with a website. Each one became a system that compounds month after month. A look at the kind of work we build — and the outcomes our clients measure us by.
+          </p>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
+      </header>
+
+      {/* ─────────── Category strip ─────────── */}
+      <section className="border-b border-line py-8">
+        <div className="max-w-site mx-auto px-5 sm:px-10 lg:px-20">
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-3 text-[11px] tracking-[0.22em] uppercase text-ink-faint">
+            <span className="text-accent">All Work</span>
+            {[
+              'Landscape',
+              'Masonry',
+              'Construction',
+              'Interior Design',
+              'Custom Homes',
+              'Remodeling',
+            ].map((c) => (
+              <span key={c} className="hover:text-ink transition-colors">
+                {c}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────── Case studies ─────────── */}
+      <section className="py-20 lg:py-32">
+        <div className="max-w-site mx-auto px-5 sm:px-10 lg:px-20 flex flex-col gap-8 lg:gap-12">
+          {caseStudies.map((cs, i) => (
+            <Reveal key={cs.client} delay={(i % 2) * 80}>
+              <article
+                className={[
+                  'group grid lg:grid-cols-2 gap-px bg-line border border-line rounded-2xl overflow-hidden hover:border-accent/30 transition-colors',
+                  i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : '',
+                ].join(' ')}
+              >
+                {/* Image */}
+                <div className="relative aspect-[16/11] lg:aspect-auto lg:min-h-[420px] overflow-hidden bg-bg-3">
+                  <ParallaxBackdrop
+                    src={cs.img}
+                    alt={`${cs.client} — ${cs.industry} build by At The Meridian`}
+                    strength={12}
+                    overlay={0.2}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                  <span className="absolute top-5 left-5 z-20 text-[10px] tracking-[0.22em] uppercase text-ink bg-bg/70 backdrop-blur-md border border-line px-3 py-1.5 rounded-full">
+                    {cs.industry}
+                  </span>
+                  {cs.featured && (
+                    <span className="absolute top-5 right-5 z-20 text-[10px] tracking-[0.22em] uppercase text-bg bg-accent px-3 py-1.5 rounded-full font-semibold">
+                      Featured
+                    </span>
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="bg-bg-2 p-8 lg:p-12 flex flex-col justify-center">
+                  <div className="font-serif italic text-[28px] lg:text-[32px] text-accent leading-none tracking-tight mb-4">
+                    {cs.client}
+                  </div>
+                  <h2 className="font-serif font-light text-2xl lg:text-3xl tracking-tight leading-snug mb-5 max-w-[24ch]">
+                    {cs.title}
+                  </h2>
+                  <p className="text-sm lg:text-base text-ink-dim leading-relaxed mb-8 max-w-[52ch]">
+                    {cs.summary}
+                  </p>
+
+                  <div className="grid grid-cols-3 border-t border-line pt-6 mb-7">
+                    {cs.outcomes.map((o, j, arr) => (
+                      <div
+                        key={o.label}
+                        className={`pr-4 ${j < arr.length - 1 ? 'border-r border-line' : ''}`}
+                      >
+                        <div className="font-serif font-light text-2xl lg:text-3xl text-accent leading-none tracking-tight mb-1.5">
+                          <em className="italic">{o.metric}</em>
+                        </div>
+                        <div className="text-[10px] tracking-[0.16em] uppercase text-ink-faint leading-tight">
+                          {o.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5">
+                    {cs.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="text-[10px] tracking-[0.18em] uppercase text-ink-dim border border-line rounded-full px-2.5 py-1"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ─────────── Note ─────────── */}
+      <section className="border-t border-line py-12">
+        <div className="max-w-site mx-auto px-5 sm:px-10 lg:px-20 text-center">
+          <p className="font-serif italic text-ink-faint text-base">
+            Representative concepts. Every engagement is built custom — and your live builds drop right in here.
+          </p>
+        </div>
+      </section>
+
+      {/* ─────────── Closing CTA ─────────── */}
+      <section className="relative overflow-hidden py-24 lg:py-36 text-center border-t border-line">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vmin] h-[100vmin]"
+          style={{
+            background:
+              'radial-gradient(circle, rgba(125, 211, 252, 0.12) 0%, transparent 60%)',
+          }}
+        />
+        <div className="max-w-2xl mx-auto px-5 relative z-10">
+          <span className="eyebrow-dark mx-auto">Your project</span>
+          <h2 className="font-serif font-light text-4xl sm:text-5xl lg:text-6xl my-7">
+            Let’s build the next one.
+          </h2>
+          <p className="text-ink-dim text-base lg:text-lg leading-relaxed mb-10 max-w-[44ch] mx-auto">
+            A 30-minute discovery call. We’ll diagnose the gaps, find the leverage, and tell you honestly whether we’re the team to close them.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2.5 px-8 py-4 bg-accent text-bg rounded-full font-medium text-sm hover:bg-accent-bright transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(125,211,252,0.25)]"
+          >
+            Book a discovery call <span aria-hidden>→</span>
+          </Link>
+        </div>
+      </section>
+    </div>
+  )
+}

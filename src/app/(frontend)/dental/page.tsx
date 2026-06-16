@@ -1,0 +1,271 @@
+import { notFound } from 'next/navigation'
+
+// ============================================================================
+// DISABLED FOR SIMPLIFIED LAUNCH (2026-06-09)
+// TODO: This page is temporarily HIDDEN for the simplified home + contact
+//       launch. It is NOT deleted. To restore: delete the notFound() stub
+//       below and uncomment the original implementation that follows.
+// ============================================================================
+export default function Page() {
+  // Route 404s while the page is disabled.
+  notFound()
+}
+
+// ---------------------------------------------------------------------------
+// ORIGINAL IMPLEMENTATION (commented out — TODO: restore when re-enabling)
+// ---------------------------------------------------------------------------
+// import Link from 'next/link'
+// import Reveal from '@/components/Reveal'
+// import ParallaxBackdrop from '@/components/ParallaxBackdrop'
+// import { images } from '@/lib/images'
+// import { DENTAL_PARENT, DENTAL_SPECIALTIES } from '@/lib/dental'
+//
+// export const metadata = {
+//   title: 'Dental Practice Marketing — At The Meridian',
+//   description:
+//     'Conversion-engineered websites, local SEO, and patient-acquisition systems for dental practices and specialists — orthodontics, oral surgery, pediatric, cosmetic, and more.',
+// }
+//
+// export default function DentalPage() {
+//   return (
+//     <div className="bg-bg text-ink font-sans font-light antialiased">
+//       {/* ─────────── Hero — half / half ─────────── */}
+//       <header className="relative min-h-[88vh] grid lg:grid-cols-2 bg-bg overflow-hidden">
+//         <div className="relative flex items-center pt-36 pb-20 lg:py-36">
+//           <div
+//             aria-hidden
+//             className="pointer-events-none absolute -left-1/4 top-1/2 -translate-y-1/2 w-[80vmin] h-[80vmin]"
+//             style={{
+//               background:
+//                 'radial-gradient(circle, rgba(125, 211, 252, 0.14) 0%, transparent 55%)',
+//             }}
+//           />
+//           <div className="px-5 sm:px-10 lg:px-16 xl:pl-20 xl:pr-12 relative z-10 max-w-2xl">
+//             <span className="eyebrow-dark">{DENTAL_PARENT.hero.eyebrow}</span>
+//             <h1 className="font-serif font-light tracking-tight leading-[0.98] text-[40px] sm:text-6xl lg:text-7xl xl:text-[80px] mt-7 mb-8 max-w-[14ch]">
+//               {DENTAL_PARENT.hero.h1Pre}{' '}
+//               <em className="hero-italic-grad font-light">{DENTAL_PARENT.hero.h1Italic}</em>
+//             </h1>
+//             <p className="text-ink-dim text-base sm:text-lg max-w-[48ch] mb-10 leading-relaxed">
+//               {DENTAL_PARENT.hero.sub}
+//             </p>
+//             <div className="flex flex-wrap gap-4">
+//               <Link
+//                 href="/contact"
+//                 className="inline-flex items-center gap-2.5 px-8 py-4 bg-accent text-bg rounded-full font-medium text-sm hover:bg-accent-bright transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(125,211,252,0.25)]"
+//               >
+//                 Book a discovery call <span aria-hidden>→</span>
+//               </Link>
+//               <Link
+//                 href="#specialties"
+//                 className="inline-flex items-center gap-2 px-8 py-4 border border-line-strong rounded-full text-sm hover:border-accent hover:text-accent transition-all"
+//               >
+//                 Explore specialties
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+//
+//         {/* Right — parallax image */}
+//         <div className="relative min-h-[55vh] lg:min-h-full">
+//           <ParallaxBackdrop
+//             src={images.dentalClinic}
+//             alt="A modern dental practice, engineered to convert"
+//             strength={12}
+//             overlay={0.2}
+//             priority
+//             sizes="(max-width: 1024px) 100vw, 50vw"
+//             className="absolute inset-0"
+//           />
+//           <div
+//             aria-hidden
+//             className="absolute inset-y-0 left-0 w-24 hidden lg:block pointer-events-none z-10"
+//             style={{
+//               background:
+//                 'linear-gradient(to right, rgba(10, 10, 11, 0.85) 0%, transparent 100%)',
+//             }}
+//           />
+//         </div>
+//         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent z-10" />
+//       </header>
+//
+//       {/* ─────────── Pain points ─────────── */}
+//       <section className="bg-bg-2 border-b border-line py-24 lg:py-32">
+//         <div className="max-w-site mx-auto px-5 sm:px-10 lg:px-20">
+//           <Reveal className="max-w-[640px] mb-14">
+//             <span className="eyebrow-dark">If This Sounds Familiar</span>
+//             <h2 className="font-serif font-light text-3xl sm:text-4xl lg:text-5xl mt-6">
+//               The revenue is there. <em className="italic text-accent">The system isn’t.</em>
+//             </h2>
+//           </Reveal>
+//           <div className="grid sm:grid-cols-2 gap-5 max-w-[1080px]">
+//             {DENTAL_PARENT.pains.map((pain, i) => (
+//               <Reveal
+//                 key={pain.title}
+//                 delay={i * 60}
+//                 className="p-7 lg:p-8 border border-line rounded-2xl bg-bg-3 hover:border-accent/30 transition-all"
+//               >
+//                 <h3 className="font-serif text-xl lg:text-2xl font-light tracking-tight mb-3">
+//                   {pain.title}
+//                 </h3>
+//                 <p className="text-sm text-ink-dim leading-relaxed">{pain.body}</p>
+//               </Reveal>
+//             ))}
+//           </div>
+//         </div>
+//       </section>
+//
+//       {/* ─────────── Outcomes ─────────── */}
+//       <section className="border-b border-line py-24 lg:py-32">
+//         <div className="max-w-site mx-auto px-5 sm:px-10 lg:px-20">
+//           <Reveal className="mb-14 max-w-[60ch]">
+//             <span className="eyebrow-dark">What Changes</span>
+//             <h2 className="font-serif font-light text-3xl sm:text-4xl lg:text-5xl mt-6">
+//               A practice that fills <em className="italic text-accent">its own schedule.</em>
+//             </h2>
+//           </Reveal>
+//           <div className="grid grid-cols-2 lg:grid-cols-4 border-t border-line">
+//             {DENTAL_PARENT.outcomes.map((o, i, arr) => (
+//               <Reveal
+//                 key={o.label}
+//                 delay={i * 60}
+//                 className={`py-10 pr-6 ${i < arr.length - 1 ? 'lg:border-r border-line' : ''}`}
+//               >
+//                 <div className="font-serif font-light text-3xl lg:text-5xl text-accent mb-3 tracking-tight leading-none">
+//                   <em className="italic">{o.metric}</em>
+//                 </div>
+//                 <div className="text-[11px] tracking-[0.18em] uppercase text-ink-faint">
+//                   {o.label}
+//                 </div>
+//               </Reveal>
+//             ))}
+//           </div>
+//         </div>
+//       </section>
+//
+//       {/* ─────────── Atmosphere band ─────────── */}
+//       <section className="relative h-[320px] sm:h-[420px] lg:h-[500px] w-full border-b border-line">
+//         <ParallaxBackdrop
+//           src={images.dentalCare}
+//           alt="Clinical excellence, marketed with confidence"
+//           strength={20}
+//           overlay={0.6}
+//           sizes="100vw"
+//           className="absolute inset-0"
+//         />
+//         <div
+//           aria-hidden
+//           className="absolute inset-x-0 top-0 h-28 z-10 pointer-events-none"
+//           style={{ background: 'linear-gradient(to bottom, #0a0a0b, transparent)' }}
+//         />
+//         <div
+//           aria-hidden
+//           className="absolute inset-x-0 bottom-0 h-28 z-10 pointer-events-none"
+//           style={{ background: 'linear-gradient(to top, #0a0a0b, transparent)' }}
+//         />
+//         <div className="relative z-20 h-full flex items-center justify-center px-6">
+//           <Reveal className="text-center max-w-[760px]">
+//             <p className="font-serif font-light text-2xl sm:text-3xl lg:text-4xl leading-snug tracking-tight text-ink">
+//               Patients decide they trust you <em className="italic text-accent-bright">before the first appointment.</em>
+//             </p>
+//           </Reveal>
+//         </div>
+//       </section>
+//
+//       {/* ─────────── Specialties ─────────── */}
+//       <section id="specialties" className="py-24 lg:py-36">
+//         <div className="max-w-site mx-auto px-5 sm:px-10 lg:px-20">
+//           <Reveal className="max-w-[640px] mb-14">
+//             <span className="eyebrow-dark">Built For Your Specialty</span>
+//             <h2 className="font-serif font-light text-3xl sm:text-4xl lg:text-5xl mt-6">
+//               Every specialty markets <em className="italic text-accent">differently.</em>
+//             </h2>
+//             <p className="text-ink-dim text-base leading-relaxed mt-5">
+//               A pediatric practice and an oral surgeon need entirely different sites, search strategies, and patient journeys. We build for the way your specialty actually grows.
+//             </p>
+//           </Reveal>
+//
+//           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+//             {DENTAL_SPECIALTIES.map((s, i) => (
+//               <Reveal key={s.slug} delay={(i % 3) * 70}>
+//                 <Link
+//                   href={`/dental/${s.slug}`}
+//                   className="group surface-glow border border-line rounded-2xl p-7 lg:p-8 flex flex-col h-full hover:border-accent/40 hover:-translate-y-1 transition-all"
+//                 >
+//                   <span className="font-serif italic text-sm text-ink-faint group-hover:text-accent transition-colors mb-5">
+//                     {String(i + 1).padStart(2, '0')}
+//                   </span>
+//                   <h3 className="font-serif font-light text-2xl tracking-tight mb-3 group-hover:text-accent transition-colors">
+//                     {s.name}
+//                   </h3>
+//                   <p className="text-sm text-ink-dim leading-relaxed flex-1 mb-6">
+//                     {s.summary}
+//                   </p>
+//                   <span className="inline-flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-accent">
+//                     Explore <span aria-hidden>→</span>
+//                   </span>
+//                 </Link>
+//               </Reveal>
+//             ))}
+//           </div>
+//         </div>
+//       </section>
+//
+//       {/* ─────────── Approach ─────────── */}
+//       <section className="bg-bg-2 border-t border-line py-24 lg:py-36">
+//         <div className="max-w-site mx-auto px-5 sm:px-10 lg:px-20">
+//           <Reveal className="mb-14 max-w-[60ch]">
+//             <span className="eyebrow-dark">How We Build</span>
+//             <h2 className="font-serif font-light text-3xl sm:text-4xl lg:text-5xl mt-6">
+//               One connected growth engine for your practice.
+//             </h2>
+//           </Reveal>
+//           <div className="grid sm:grid-cols-2 gap-x-12 gap-y-12 lg:gap-y-14">
+//             {DENTAL_PARENT.approach.map((step, i) => (
+//               <Reveal key={step.num} delay={i * 60} className="flex gap-6">
+//                 <span className="font-serif italic text-2xl text-accent flex-shrink-0 leading-tight">
+//                   {step.num}
+//                 </span>
+//                 <div>
+//                   <h3 className="font-serif text-xl lg:text-2xl font-light tracking-tight mb-3">
+//                     {step.title}
+//                   </h3>
+//                   <p className="text-sm text-ink-dim leading-relaxed">{step.body}</p>
+//                 </div>
+//               </Reveal>
+//             ))}
+//           </div>
+//         </div>
+//       </section>
+//
+//       {/* ─────────── Closing CTA band ─────────── */}
+//       <section className="relative overflow-hidden py-28 lg:py-40 text-center border-t border-line">
+//         <ParallaxBackdrop
+//           src={images.dentalSmile}
+//           alt="A confident smile — the outcome behind the practice"
+//           strength={18}
+//           overlay={0.72}
+//           sizes="100vw"
+//           className="absolute inset-0"
+//         />
+//         <div
+//           aria-hidden
+//           className="absolute inset-x-0 top-0 h-28 z-10 pointer-events-none"
+//           style={{ background: 'linear-gradient(to bottom, #0a0a0b, transparent)' }}
+//         />
+//         <div className="max-w-2xl mx-auto px-5 relative z-20">
+//           <p className="font-serif italic text-2xl sm:text-3xl lg:text-4xl text-ink mb-10 leading-snug tracking-tight">
+//             “{DENTAL_PARENT.closing}”
+//           </p>
+//           <Link
+//             href="/contact"
+//             className="inline-flex items-center gap-2.5 px-8 py-4 bg-accent text-bg rounded-full font-medium text-sm hover:bg-accent-bright transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(125,211,252,0.25)]"
+//           >
+//             Book a discovery call <span aria-hidden>→</span>
+//           </Link>
+//         </div>
+//       </section>
+//     </div>
+//   )
+// }
+//

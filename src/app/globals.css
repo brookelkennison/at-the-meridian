@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ──────────────────────────────────────────────────────────────
+   At The Meridian — Salo-inspired dark editorial, blue-tinted
+   Palette: bg #0a0c14 · ink #f5f7fb · accent #7dd3fc (sky blue)
+   Fonts:   Fustat (display + body) · Space Grotesk (UI)
+   ────────────────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+  background: #0a0c14;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track  { background: #0a0c14; }
+::-webkit-scrollbar-thumb  { background: #2a2f3d; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #404757; }
+* { scrollbar-color: #2a2f3d #0a0c14; scrollbar-width: thin; }
+
+@layer base {
+  body {
+    @apply bg-bg text-ink font-sans;
+    font-feature-settings: 'ss01', 'ss02', 'cv11';
+  }
+  ::selection      { @apply bg-accent text-on-accent; }
+  ::-moz-selection { @apply bg-accent text-on-accent; }
+
+  /* Salo uses fairly large, tight headings everywhere */
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+    font-feature-settings: 'ss01';
+  }
+}
+
+@layer components {
+  /* ─────────── Eyebrow / label (Norwester, all-caps) ─────────── */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 font-headline text-[13px] tracking-[0.20em] uppercase text-ink-dim;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply w-7 h-px bg-accent;
+  }
+  /* legacy alias used across older pages */
+  .eyebrow-dark { @apply eyebrow; }
+
+  /* ─────────── Main headline (Norwester) ───────────
+     Use on logo wordmarks, hero h1s, section h2s. Norwester is all-caps and
+     has no italic face — `.headline em` strips synthetic italic so emphasis
+     is conveyed through color alone (typically text-accent). */
+  .headline {
+    @apply font-headline uppercase tracking-[0.01em] leading-[0.95];
+    font-feature-settings: normal;
+  }
+  .headline em,
+  .headline i {
+    font-style: normal;
+  }
+
+  /* ─────────── Buttons ─────────── */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-accent text-on-accent rounded-full font-medium text-sm transition-all hover:bg-accent-bright hover:-translate-y-0.5;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 border border-line-strong text-ink rounded-full text-sm hover:border-accent hover:text-accent transition-all;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-bg-3 text-ink rounded-full text-sm hover:bg-bg-alt transition-all;
+  }
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 border border-line-strong text-ink rounded-full text-sm hover:border-accent hover:text-accent transition-all;
+  }
+
+  /* ─────────── Container ─────────── */
+  .container-tight {
+    @apply max-w-site mx-auto px-5 sm:px-8 lg:px-12;
+  }
+  .container-edge {
+    /* salo hugs the edge more on huge screens */
+    @apply mx-auto px-5 sm:px-8 lg:px-12;
+    max-width: 1680px;
+  }
+
+  /* ─────────── Heading helpers (legacy compatibility) ─────────── */
+  .heading-display { @apply font-display font-medium tracking-tight; }
+  .heading-xl { @apply text-display-lg heading-display text-ink; }
+  .heading-lg { @apply text-display-md heading-display text-ink; }
+  .heading-md { @apply text-display-sm heading-display text-ink; }
+  .heading-sm { @apply text-2xl sm:text-3xl heading-display text-ink; }
+
+  /* Hero italic gradient — sky blue */
+  .hero-italic-grad {
+    background: linear-gradient(135deg, #bae6fd 0%, #7dd3fc 50%, #0369a1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ─────────── Scroll Reveal ─────────── */
+  .reveal {
+    @apply opacity-0 translate-y-7 transition-all duration-[900ms] ease-out;
+  }
+  .reveal.in {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* ─────────── Salo-style scroll progress pill ───────────
+     Mimics the "0px" indicator that ticks as you scroll on salo.uk. */
+  .scroll-pill {
+    @apply inline-flex items-center gap-2 font-grotesk text-[11px] tracking-[0.2em] uppercase text-ink-faint;
+  }
+  .scroll-pill::before {
+    content: "";
+    @apply w-1.5 h-1.5 rounded-full bg-accent;
+    box-shadow: 0 0 14px rgba(125, 211, 252, 0.65);
+  }
+
+  /* ─────────── Photo stack — used in the sticky parallax intro ─────────── */
+  .photo-card {
+    @apply relative overflow-hidden rounded-[20px] bg-bg-3;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.5);
+  }
+  /* Cascade offset only kicks in on desktop, where the stack has room */
+  @media (min-width: 1024px) {
+    .photo-card {
+      margin-top: var(--stack-offset, 0px);
+    }
+  }
+  .photo-card img {
+    @apply absolute inset-0 w-full h-full object-cover;
+  }
+
+  /* ─────────── Image placeholder (legacy ImageSpot decoration) ─────────── */
+  .img-spot {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(ellipse at 50% 75%, rgba(125, 211, 252, 0.14), transparent 55%),
+      linear-gradient(180deg, #11141d 0%, #0a0c14 100%);
+    border: 1px solid rgba(190, 210, 240, 0.10);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 22px;
+  }
+  .img-spot::before {
+    content: "";
+    position: absolute;
+    top: 62%;
+    left: 6%;
+    right: 6%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(125, 211, 252, 0.4), transparent);
+  }
+  .img-spot::after {
+    content: "";
+    position: absolute;
+    top: 62%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: #7dd3fc;
+    box-shadow: 0 0 28px rgba(125, 211, 252, 0.6), 0 0 12px #7dd3fc;
+    opacity: 0.85;
+  }
+  .img-spot img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+  }
+  .img-spot:has(img)::before,
+  .img-spot:has(img)::after,
+  .img-spot:has(img) .img-spot-tag {
+    display: none;
+  }
+  .img-spot-tag {
+    position: relative;
+    z-index: 3;
+    background: rgba(10, 12, 20, 0.72);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(190, 210, 240, 0.08);
+    padding: 12px 16px;
+    border-radius: 4px;
+    @apply inline-flex flex-col gap-1 font-grotesk text-[10px] tracking-[0.22em] uppercase text-ink-dim;
+  }
+  .img-spot-tag strong { @apply text-accent font-medium; }
+  .img-spot-tag span   { @apply text-[10px] tracking-normal normal-case text-ink-faint italic; }
+
+  /* ─────────── Marquee ─────────── */
+  .marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid rgba(190, 210, 240, 0.10);
+    border-bottom: 1px solid rgba(190, 210, 240, 0.10);
+    padding: 24px 0;
+    @apply flex items-center font-grotesk text-[12px] tracking-[0.28em] uppercase text-ink-faint whitespace-nowrap;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 60px;
+    animation: marquee 40s linear infinite;
+  }
+  .marquee-track .dot { @apply text-accent; }
+
+  /* ─────────── Texture utilities ─────────── */
+  .grain-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .bg-grid {
+    background-image: radial-gradient(rgba(190, 210, 240, 0.06) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+  .bg-blueprint {
+    background-image:
+      linear-gradient(to right, rgba(125, 211, 252, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(125, 211, 252, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .surface-glow {
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(125, 211, 252, 0.06), transparent 60%),
+      linear-gradient(180deg, #11141d 0%, #0a0c14 100%);
+  }
+}

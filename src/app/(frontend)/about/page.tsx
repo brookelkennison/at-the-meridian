@@ -1,0 +1,346 @@
+import { notFound } from 'next/navigation'
+
+// ============================================================================
+// DISABLED FOR SIMPLIFIED LAUNCH (2026-06-09)
+// TODO: This page is temporarily HIDDEN for the simplified home + contact
+//       launch. It is NOT deleted. To restore: delete the notFound() stub
+//       below and uncomment the original implementation that follows.
+// ============================================================================
+export default function Page() {
+  // Route 404s while the page is disabled.
+  notFound()
+}
+
+// ---------------------------------------------------------------------------
+// ORIGINAL IMPLEMENTATION (commented out — TODO: restore when re-enabling)
+// ---------------------------------------------------------------------------
+// import Image from 'next/image'
+// import Link from 'next/link'
+// import Reveal from '@/components/Reveal'
+// import SaloPhotoStack from '@/components/SaloPhotoStack'
+// import StickyIntro from '@/components/StickyIntro'
+// import ScrollProgressPill from '@/components/ScrollProgressPill'
+// import { TEAM } from '@/lib/team'
+//
+// export const metadata = {
+//   title: 'About — At The Meridian',
+//   description:
+//     'A hand-picked studio of operators, engineers, and designers building successful technology for established businesses.',
+// }
+//
+// const U = (id: string, w = 1600, h = 1200) =>
+//   `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&fit=crop&auto=format&q=80`
+//
+// // ───── Hero parallax stack (5 vertical cards, mirrors salo) ─────
+// const heroStack = [
+//   { src: U('1522071820081-009f0129c71c', 800, 1700), alt: 'Team in the studio.', speed: -90 },
+//   { src: U('1517048676732-d65bc937f952', 800, 1700), alt: 'Studio brainstorm.', speed: 50 },
+//   { src: U('1556761175-5973dc0f32e7', 800, 1700), alt: 'Workshop session.', speed: -50 },
+//   { src: U('1559136555-9303baea8ebd', 800, 1700), alt: 'At the desk.', speed: 70 },
+//   { src: U('1542744173-8e7e53415bb0', 800, 1700), alt: 'Team retreat.', speed: -60 },
+// ]
+//
+// // ───── Culture grid photos (mixed sizes) ─────
+// const culture = [
+//   { src: U('1522071820081-009f0129c71c'), alt: 'Team standup.', span: 'lg:col-span-5 aspect-[4/3]' },
+//   { src: U('1517048676732-d65bc937f952'), alt: 'Strategy day.', span: 'lg:col-span-3 aspect-[3/4]' },
+//   { src: U('1556761175-5973dc0f32e7'), alt: 'Workshop.',       span: 'lg:col-span-4 aspect-[3/4]' },
+//   { src: U('1559136555-9303baea8ebd'), alt: 'Quiet hours.',    span: 'lg:col-span-5 aspect-[4/3]' },
+//   { src: U('1542744173-8e7e53415bb0'), alt: 'Team retreat.',   span: 'lg:col-span-3 aspect-[3/4]' },
+//   { src: U('1517245386807-bb43f82c33c4'), alt: 'Studio Friday.',span: 'lg:col-span-4 aspect-[1/1]' },
+//   { src: U('1496180470114-6ef9605b3a64'), alt: 'Off-site walk.',span: 'lg:col-span-4 aspect-[4/3]' },
+//   { src: U('1517960413843-0aee8e2b3285'), alt: 'Studio desk.',  span: 'lg:col-span-4 aspect-[4/3]' },
+// ]
+//
+// export default function AboutPage() {
+//   return (
+//     <div className="bg-bg text-ink">
+//       {/* ───── 1. HERO — sticky text + parallax photo stack ───── */}
+//       <header className="relative">
+//         <StickyIntro
+//           text={
+//             <div>
+//               <span className="inline-flex items-center gap-3 font-sans italic text-ink-dim text-base sm:text-lg tracking-normal normal-case before:content-[''] before:w-7 before:h-px before:bg-accent">
+//                 About us
+//               </span>
+//               <h1 className="headline text-display-xl mt-6 mb-10 max-w-[16ch]">
+//                 Built by an operator. <em className="text-accent">Not an agency.</em>
+//               </h1>
+//
+//               <div className="mb-8">
+//                 <ScrollProgressPill label="Story" />
+//               </div>
+//
+//               <p className="text-ink text-xl sm:text-2xl leading-[1.45] tracking-tight max-w-[52ch] mb-6">
+//                 We select our clients carefully — and we only take on projects we believe will produce tangible, measurable results.
+//               </p>
+//               <p className="text-ink-dim text-lg sm:text-xl leading-[1.55] max-w-[58ch] mb-10">
+//                 Online growth takes time and consistency. Most businesses don&rsquo;t know how to measure what&rsquo;s working behind the scenes, or how to course-correct when the data shifts. That&rsquo;s where we come in. The businesses that invest the resources — time and money — are the ones who see the ROAS everyone talks about.
+//               </p>
+//
+//               <Link href="#team" className="btn-primary">
+//                 Meet the team <span aria-hidden>↓</span>
+//               </Link>
+//             </div>
+//           }
+//           photos={
+//             <SaloPhotoStack photos={heroStack} columns={5} />
+//           }
+//         />
+//       </header>
+//
+//       {/* ───── 2. Big featured team photo ───── */}
+//       <section className="border-t border-line">
+//         <div className="container-edge py-16 lg:py-24">
+//           <Reveal>
+//             <div className="relative w-full aspect-[16/9] rounded-[24px] overflow-hidden bg-bg-3">
+//               <Image
+//                 src={U('1522071820081-009f0129c71c', 2200, 1240)}
+//                 alt="At The Meridian team — Spring 2026"
+//                 fill
+//                 sizes="100vw"
+//                 className="object-cover"
+//                 priority
+//               />
+//             </div>
+//           </Reveal>
+//         </div>
+//       </section>
+//
+//       {/* ───── 3. The Meridian story ───── */}
+//       <section className="border-t border-line py-28 lg:py-40">
+//         <div className="container-edge grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-12 lg:gap-24 items-start">
+//           <Reveal className="lg:sticky lg:top-32">
+//             <span className="eyebrow">The Meridian story</span>
+//             <h2 className="headline text-display-md mt-7 max-w-[18ch]">
+//               From operator instincts to <em className="italic text-accent font-medium">international reach.</em>
+//             </h2>
+//           </Reveal>
+//
+//           <Reveal>
+//             <div className="mb-8">
+//               <ScrollProgressPill label="Origin" />
+//             </div>
+//             <p className="text-ink-dim text-lg leading-[1.6] mb-6 max-w-[60ch]">
+//               At The Meridian was founded by an operator who had spent a decade inside high-growth businesses, building the systems that turn proof-of-model into scaled revenue. Since then, the studio has grown into a close-knit team of senior craftspeople, supporting clients on three continents with infrastructure built to last.
+//             </p>
+//             <p className="text-ink-dim text-lg leading-[1.6] mb-12 max-w-[60ch]">
+//               We stay small on purpose. Every engagement is led by a senior partner. Every line of code, every paid dollar, every CRM workflow ships under our name — and is built to outlive whoever wrote it.
+//             </p>
+//
+//             <div className="relative w-full aspect-video rounded-[20px] overflow-hidden bg-bg-3">
+//               <Image
+//                 src={U('1517245386807-bb43f82c33c4', 2000, 1125)}
+//                 alt="Studio workshop session."
+//                 fill
+//                 sizes="(max-width: 1024px) 100vw, 60vw"
+//                 className="object-cover"
+//               />
+//               <div className="absolute inset-0 flex items-center justify-center">
+//                 <span className="w-16 h-16 rounded-full bg-accent text-on-accent flex items-center justify-center text-xl">▶</span>
+//               </div>
+//             </div>
+//           </Reveal>
+//         </div>
+//       </section>
+//
+//       {/* ───── 4. Hear from our partners ───── */}
+//       <section className="border-t border-line py-28 lg:py-40 bg-bg-alt">
+//         <div className="container-edge">
+//           <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-12 lg:gap-24 items-start mb-14">
+//             <Reveal>
+//               <span className="eyebrow">Partners</span>
+//               <h2 className="headline text-display-md mt-7 max-w-[20ch]">
+//                 Hear from the founders we build alongside.
+//               </h2>
+//             </Reveal>
+//             <Reveal>
+//               <div className="mb-6"><ScrollProgressPill label="Voices" /></div>
+//               <p className="text-ink-dim text-lg leading-[1.6] max-w-[58ch]">
+//                 Real stories from the operators we partner with — what it&rsquo;s like to work with the studio, what changed in their business, and what they&rsquo;d tell you before you start.
+//               </p>
+//             </Reveal>
+//           </div>
+//
+//           <Reveal>
+//             <div className="grid lg:grid-cols-3 gap-5">
+//               {[
+//                 {
+//                   quote: 'The first piece of marketing that ever paid for itself in 90 days.',
+//                   name: 'COO, fintech series B',
+//                   src: U('1573497019940-1c28c88b4f3e', 900, 1200),
+//                 },
+//                 {
+//                   quote: 'They rebuilt the site, then rebuilt the funnel. Inbound tripled.',
+//                   name: 'Founder, B2B SaaS',
+//                   src: U('1507003211169-0a1dd7228f2d', 900, 1200),
+//                 },
+//                 {
+//                   quote: 'A studio that finally speaks the language of growth, not deliverables.',
+//                   name: 'CMO, healthcare network',
+//                   src: U('1494790108377-be9c29b29330', 900, 1200),
+//                 },
+//               ].map((p) => (
+//                 <div key={p.name} className="relative rounded-[20px] overflow-hidden aspect-[3/4] bg-bg-3">
+//                   <Image src={p.src} alt={p.name} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 33vw" />
+//                   <div className="absolute inset-x-0 bottom-0 p-7 bg-gradient-to-t from-black/85 via-black/40 to-transparent">
+//                     <p className="font-display text-2xl leading-[1.2] tracking-tight text-ink mb-3">
+//                       &ldquo;{p.quote}&rdquo;
+//                     </p>
+//                     <p className="font-grotesk text-[11px] tracking-[0.22em] uppercase text-ink-dim">
+//                       {p.name}
+//                     </p>
+//                   </div>
+//                 </div>
+//               ))}
+//             </div>
+//           </Reveal>
+//         </div>
+//       </section>
+//
+//       {/* ───── 5. Our culture ───── */}
+//       <section className="border-t border-line py-28 lg:py-40">
+//         <div className="container-edge">
+//           <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-12 lg:gap-24 items-start mb-14">
+//             <Reveal>
+//               <span className="eyebrow">Our culture</span>
+//               <h2 className="headline text-display-md mt-7 max-w-[18ch]">
+//                 Fully remote — but <em className="italic text-accent font-medium">always connected.</em>
+//               </h2>
+//             </Reveal>
+//             <Reveal>
+//               <div className="mb-6"><ScrollProgressPill label="Culture" /></div>
+//               <p className="text-ink-dim text-lg leading-[1.6] max-w-[58ch]">
+//                 Regular socials and offsites sit at the heart of how we work. The best outcomes come from teams that actually like each other — so we invest in the connective tissue that keeps a remote studio close.
+//               </p>
+//             </Reveal>
+//           </div>
+//
+//           <Reveal>
+//             <div className="grid grid-cols-2 lg:grid-cols-12 gap-3 sm:gap-4 lg:gap-5">
+//               {culture.map((c, i) => (
+//                 <div
+//                   key={i}
+//                   className={`relative col-span-1 ${c.span} overflow-hidden rounded-[18px] bg-bg-3`}
+//                 >
+//                   <Image src={c.src} alt={c.alt} fill sizes="(max-width: 1024px) 50vw, 25vw" className="object-cover" />
+//                 </div>
+//               ))}
+//             </div>
+//           </Reveal>
+//         </div>
+//       </section>
+//
+//       {/* ───── 6. Team grid ───── */}
+//       <section id="team" className="border-t border-line py-28 lg:py-40 bg-bg-alt">
+//         <div className="container-edge">
+//           <Reveal className="mb-16">
+//             <span className="eyebrow">Team</span>
+//             <h2 className="headline text-display-md mt-7">
+//               The team behind the work.
+//             </h2>
+//           </Reveal>
+//
+//           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 lg:gap-6">
+//             {TEAM.map((m, i) => (
+//               <Reveal key={m.slug} delay={i * 60}>
+//                 <a href={`#${m.slug}`} className="group block">
+//                   <div className="relative aspect-square overflow-hidden rounded-[18px] bg-bg-3 mb-4">
+//                     <Image
+//                       src={m.portrait}
+//                       alt={m.name}
+//                       fill
+//                       sizes="(max-width: 768px) 50vw, 25vw"
+//                       className="object-cover transition-transform duration-[800ms] group-hover:scale-105"
+//                     />
+//                   </div>
+//                   <h3 className="font-display text-xl font-medium tracking-tight text-ink mb-1 group-hover:text-accent transition-colors">
+//                     {m.name}
+//                   </h3>
+//                   <p className="font-grotesk text-[11px] tracking-[0.18em] uppercase text-ink-faint">
+//                     {m.role}
+//                   </p>
+//                 </a>
+//               </Reveal>
+//             ))}
+//           </div>
+//         </div>
+//       </section>
+//
+//       {/* ───── 7. Expanded member sections ───── */}
+//       {TEAM.map((m, idx) => (
+//         <section
+//           key={m.slug}
+//           id={m.slug}
+//           className={`border-t border-line py-28 lg:py-40 ${idx % 2 === 1 ? 'bg-bg-alt' : ''}`}
+//         >
+//           <div className="container-edge">
+//             <Reveal>
+//               <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-12 lg:gap-24 items-start mb-16">
+//                 <div className="lg:sticky lg:top-32">
+//                   <h3 className="headline text-display-sm text-ink mb-3">
+//                     {m.name}
+//                   </h3>
+//                   <p className="font-grotesk text-[11px] tracking-[0.22em] uppercase text-ink-faint mb-8">
+//                     {m.role}
+//                   </p>
+//                   <div className="mb-8"><ScrollProgressPill label="Profile" /></div>
+//                 </div>
+//                 <div>
+//                   <p className="text-ink text-xl lg:text-2xl leading-[1.45] tracking-tight mb-7 max-w-[56ch]">
+//                     {m.blurb}
+//                   </p>
+//                   <p className="text-ink-dim text-base lg:text-lg leading-[1.65] max-w-[60ch] mb-10">
+//                     {m.bio}
+//                   </p>
+//                   {m.linkedIn && (
+//                     <a
+//                       href={m.linkedIn}
+//                       target="_blank"
+//                       rel="noopener noreferrer"
+//                       className="inline-flex items-center gap-2 text-accent text-sm font-medium hover:text-accent-bright transition-colors"
+//                     >
+//                       Connect on LinkedIn <span aria-hidden>↗</span>
+//                     </a>
+//                   )}
+//                 </div>
+//               </div>
+//             </Reveal>
+//
+//             <Reveal>
+//               <div className="grid grid-cols-3 gap-4 lg:gap-6">
+//                 {m.gallery.map((g, i) => (
+//                   <div key={i} className="relative aspect-[3/4] overflow-hidden rounded-[18px] bg-bg-3">
+//                     <Image src={g.src} alt={g.alt} fill sizes="(max-width: 1024px) 33vw, 22vw" className="object-cover" />
+//                   </div>
+//                 ))}
+//               </div>
+//             </Reveal>
+//           </div>
+//         </section>
+//       ))}
+//
+//       {/* ───── 8. Closing CTA ───── */}
+//       <section className="relative overflow-hidden py-28 lg:py-40 text-center border-t border-line">
+//         <div
+//           aria-hidden
+//           className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vmin] h-[90vmin]"
+//           style={{
+//             background:
+//               'radial-gradient(circle, rgba(125, 211, 252, 0.10) 0%, transparent 60%)',
+//           }}
+//         />
+//         <div className="relative z-10 max-w-3xl mx-auto px-5">
+//           <span className="eyebrow mx-auto">Next</span>
+//           <h2 className="headline text-display-lg mt-7 mb-10">
+//             Let&rsquo;s talk about <em className="italic text-accent font-medium">what you&rsquo;re building.</em>
+//           </h2>
+//           <Link href="/contact" className="btn-primary">
+//             Start a conversation <span aria-hidden>→</span>
+//           </Link>
+//         </div>
+//       </section>
+//     </div>
+//   )
+// }
+//

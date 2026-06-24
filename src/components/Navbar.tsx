@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 // TODO: Re-enable when restoring the full nav (Industries dropdown). Disabled
 //       for the simplified home + contact launch (2026-06-09).
@@ -47,7 +48,12 @@ export default function Navbar() {
   //   { label: 'Blog', href: '/blog' },
   // ]
   // ──────────────────────────────────────────────────────────────────────
-  const navLinks: NavItem[] = []
+  const navLinks: NavItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'Services', href: '/#services' },
+    { label: 'Retainers', href: '/#retainers' },
+    { label: 'About', href: '/#about' },
+  ]
 
   return (
     <nav
@@ -60,10 +66,14 @@ export default function Navbar() {
     >
       <div className="container-edge h-[72px] flex items-center justify-between gap-6">
         {/* ───── Logo + tagline (salo style) ───── */}
-        <Link href="/" className="flex items-center gap-4 group shrink-0">
-          <span
-            className="w-2 h-2 rounded-full bg-accent transition-all group-hover:scale-110"
-            style={{ boxShadow: '0 0 14px rgba(125, 211, 252, 0.7)' }}
+        <Link href="/" className="flex items-center gap-3 group shrink-0">
+          <Image
+            src="/images/atm-icon.png"
+            alt="At The Meridian"
+            width={32}
+            height={32}
+            priority
+            className="w-8 h-8 object-contain transition-transform group-hover:scale-110"
           />
           <span className="font-headline text-ink text-[22px] tracking-[0.06em] uppercase leading-none">
             At The Meridian
@@ -99,7 +109,7 @@ export default function Navbar() {
                 </button>
 
                 <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200">
-                  <div className="bg-bg-alt/95 backdrop-blur-xl shadow-[0_24px_60px_rgba(0,0,0,0.5)] border border-line rounded-2xl py-2 min-w-[260px]">
+                  <div className="bg-white/95 backdrop-blur-xl shadow-[0_24px_60px_rgba(15,23,42,0.14)] border border-line rounded-2xl py-2 min-w-[260px]">
                     {link.children.map((child) => (
                       <Link
                         key={child.href}
@@ -128,9 +138,9 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-3 shrink-0">
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-accent text-on-accent text-sm font-medium px-5 py-2.5 rounded-full hover:bg-accent-bright transition-all hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 bg-ink text-bg text-sm font-medium px-5 py-2.5 rounded-full hover:bg-accent hover:text-on-accent transition-all hover:-translate-y-0.5"
           >
-            Contact us <span aria-hidden>→</span>
+            Get in Touch <span aria-hidden>→</span>
           </Link>
         </div>
 
@@ -154,7 +164,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full right-5 mt-2 bg-bg-alt/95 backdrop-blur-xl border border-line rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.5)] p-6 lg:hidden z-40 max-h-[80vh] overflow-y-auto min-w-[260px]"
+            className="absolute top-full right-5 mt-2 bg-white/95 backdrop-blur-xl border border-line rounded-2xl shadow-[0_24px_60px_rgba(15,23,42,0.14)] p-6 lg:hidden z-40 max-h-[80vh] overflow-y-auto min-w-[260px]"
           >
             <div className="flex flex-col gap-4">
               {navLinks.map((link) =>
@@ -189,10 +199,10 @@ export default function Navbar() {
               )}
               <Link
                 href="/contact"
-                className="mt-3 bg-accent text-on-accent text-sm font-medium px-5 py-2.5 rounded-full hover:bg-accent-bright transition-colors text-center"
+                className="mt-3 bg-ink text-bg text-sm font-medium px-5 py-2.5 rounded-full hover:bg-accent hover:text-on-accent transition-colors text-center"
                 onClick={() => setIsOpen(false)}
               >
-                Contact us →
+                Get in Touch →
               </Link>
             </div>
           </motion.div>

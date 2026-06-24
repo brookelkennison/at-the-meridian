@@ -7,24 +7,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ─────────── Salo-inspired dark palette, blue-tinted ───────────
-        // Surfaces — subtle navy undertone (slightly cooler than pure neutral)
-        'bg': '#0a0c14',         // base background
-        'bg-alt': '#11141d',     // alt section / elevated card
-        'bg-2': '#11141d',       // alias kept for legacy refs
-        'bg-3': '#181c28',       // deeper card / inset
-        // Lines (cool tinted white)
-        'line': 'rgba(190, 210, 240, 0.10)',
-        'line-strong': 'rgba(190, 210, 240, 0.22)',
-        // Foreground (slightly cool white)
-        'ink': '#f5f7fb',
-        'ink-dim': 'rgba(245, 247, 251, 0.72)',
-        'ink-faint': 'rgba(245, 247, 251, 0.42)',
-        // Signature accent (sky blue — original brand)
-        'accent': '#7dd3fc',
-        'accent-bright': '#bae6fd',
-        'accent-deep': '#0369a1',
-        'on-accent': '#0a0c14',
+        // ─────────── Light editorial palette, sky-blue accent (Stallion-style) ───────────
+        // Surfaces — crisp white base with soft cool-gray elevation
+        'bg': '#ffffff',         // base background
+        'bg-alt': '#f5f7fb',     // alt section / subtle elevated
+        'bg-2': '#f5f7fb',       // alias kept for legacy refs
+        'bg-3': '#eef2f8',       // deeper card / inset
+        // Lines (cool ink, low opacity — reads on white)
+        'line': 'rgba(15, 23, 42, 0.08)',
+        'line-strong': 'rgba(15, 23, 42, 0.16)',
+        // Foreground (near-black, cool navy undertone)
+        'ink': '#0d1320',
+        'ink-dim': 'rgba(13, 19, 32, 0.66)',
+        'ink-faint': 'rgba(13, 19, 32, 0.42)',
+        // Signature accent (sky blue — deepened so it reads on white)
+        'accent': '#0284c7',
+        'accent-bright': '#38bdf8',
+        'accent-deep': '#075985',
+        'on-accent': '#ffffff',
+        // Sky tints — for large surfaces / hero gradients (the light "sky" feel)
+        'sky-tint': '#7dd3fc',
+        'sky-tint-soft': '#bae6fd',
         // Secondary accents (used sparingly)
         'spot-blue':   '#0d99ff',
         'spot-cyan':   '#61fdfc',
@@ -32,13 +35,15 @@ const config: Config = {
         'spot-purple': '#9e36ff',
         'spot-yellow': '#ffcd29',
         'spot-red':    '#f24822',
-        // ─────────── Legacy coastal aliases (kept to avoid breaking older code) ───────────
-        'meridian-sky': '#7dd3fc',
-        'deep-ocean': '#0a0c14',
-        'coastal-teal': '#7dd3fc',
-        'horizon': '#11141d',
-        'warm-sand': '#11141d',
-        'driftwood': '#181c28',
+        'spot-lime':        '#4d7c0f',  // readable lime green (text)
+        'spot-lime-bright': '#558b1a',  // lime green (icons)
+        // ─────────── Legacy aliases (remapped to the light theme) ───────────
+        'meridian-sky': '#7dd3fc',   // light sky tint
+        'deep-ocean': '#0d1320',     // dark ink — used as dark text / dark pills on light
+        'coastal-teal': '#0284c7',   // matches accent
+        'horizon': '#eef2f7',        // light section gray
+        'warm-sand': '#f4f6f9',      // light neutral
+        'driftwood': '#dfe5ee',      // light border / hover gray
       },
       maxWidth: {
         'site': '1440px',

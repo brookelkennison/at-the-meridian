@@ -78,7 +78,7 @@ export default async function EstimatePage({
         {/* Video */}
         <div className="mb-16">
           {videoUrl ? (
-            <div className="relative w-full overflow-hidden rounded-xl border border-line-strong bg-bg-3 aspect-video shadow-[0_24px_60px_rgba(0,0,0,0.5)]">
+            <div className="relative w-full overflow-hidden rounded-xl border border-line-strong bg-bg-3 aspect-video shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
               <iframe
                 src={videoUrl}
                 title={`${tier.name} walkthrough`}

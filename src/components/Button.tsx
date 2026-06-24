@@ -22,12 +22,12 @@ export default function Button({
   type = 'button',
   disabled = false,
 }: ButtonProps) {
-  const baseStyles = 'font-display tracking-wider uppercase rounded-lg transition-colors inline-flex items-center justify-center'
+  const baseStyles = 'font-display tracking-wider uppercase rounded-full transition-colors inline-flex items-center justify-center'
 
   const variantStyles = {
-    primary: 'bg-coastal-teal text-white hover:bg-deep-ocean',
+    primary: 'bg-accent text-on-accent hover:bg-accent-deep',
     secondary: 'bg-warm-sand text-deep-ocean hover:bg-driftwood',
-    outline: 'border-2 border-coastal-teal text-coastal-teal hover:bg-coastal-teal hover:text-white',
+    outline: 'border-2 border-accent text-accent hover:bg-accent hover:text-on-accent',
   }
 
   const sizeStyles = {

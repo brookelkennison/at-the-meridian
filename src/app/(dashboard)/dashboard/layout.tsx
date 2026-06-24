@@ -6,6 +6,7 @@ import { useState, type ReactElement } from 'react'
 
 const navItems = [
   { label: 'Overview', href: '/dashboard', icon: 'grid' },
+  { label: 'Results', href: '/dashboard/results', icon: 'trending' },
   { label: 'Inquiries', href: '/dashboard/inquiries', icon: 'inbox' },
   { label: 'Projects', href: '/dashboard/projects', icon: 'folder' },
   { label: 'Blog', href: '/dashboard/blog', icon: 'edit' },
@@ -45,6 +46,12 @@ function Icon({ name, className }: { name: string; className?: string }) {
     chart: (
       <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M18 20V10M12 20V4M6 20v-6" strokeLinecap="round" />
+      </svg>
+    ),
+    trending: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M23 6l-9.5 9.5-5-5L1 18" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M17 6h6v6" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
     menu: (

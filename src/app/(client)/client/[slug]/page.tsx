@@ -637,7 +637,7 @@ export default function ClientDashboardPage() {
             Powered by At The Meridian
           </p>
           <p className="text-xs" style={{ color: `${b.darkColor}33` }}>
-            Questions? Email hello@atthemeridian.co
+            Questions? Email brooke@atthemeridian.co
           </p>
         </div>
       </div>

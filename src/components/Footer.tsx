@@ -17,16 +17,21 @@ export default function Footer() {
               </span>
             </Link>
             <p className="headline text-4xl lg:text-6xl text-ink max-w-[18ch]">
-              Built to scale. <span className="text-accent">Engineered to last.</span>
+              Websites &amp; systems that convert <span className="text-accent">search to sale.</span>
             </p>
             <div className="mt-10 flex flex-col gap-2 font-grotesk text-[13px] tracking-[0.05em]">
               <a
-                href="mailto:hello@atthemeridian.co"
+                href="mailto:brooke@atthemeridian.co"
                 className="text-ink-dim hover:text-accent transition-colors"
               >
-                hello@atthemeridian.co
+                brooke@atthemeridian.co
               </a>
-              <span className="text-ink-faint">+1 (555) 010-0000</span>
+              <a
+                href="tel:+16156796644"
+                className="text-ink-dim hover:text-accent transition-colors"
+              >
+                (615) 679-6644
+              </a>
             </div>
           </div>
 
@@ -36,15 +41,12 @@ export default function Footer() {
               Our services
             </h3>
             <ul className="space-y-3.5">
-              {/* TODO: Links repointed to /contact for the simplified home +
-                  contact launch (2026-06-09). Restore href: '/services' once
-                  the Services page is re-enabled. */}
               {[
-                { label: 'High-performance websites', href: '/contact' },
-                { label: 'SEO & authority', href: '/contact' },
-                { label: 'Paid acquisition', href: '/contact' },
-                { label: 'CRM & automation', href: '/contact' },
-                { label: 'Lead generation', href: '/contact' },
+                { label: 'The Meridian System', href: '/#system' },
+                { label: 'Build Packages', href: '/work-with-us#build' },
+                { label: '30-Day Growth Sprint', href: '/work-with-us#sprint' },
+                { label: 'Growth Partnerships', href: '/work-with-us#partnerships' },
+                { label: 'Book a Strategy Session', href: '/contact' },
               ].map((l) => (
                 <li key={l.label}>
                   <Link
@@ -71,6 +73,8 @@ export default function Footer() {
                   { label: 'Our process', href: '/process' },
                   { label: 'Blog', href: '/blog' }, */}
               {[
+                { label: 'Work with us', href: '/work-with-us' },
+                { label: 'Book a strategy session', href: '/contact' },
                 { label: 'Contact us', href: '/contact' },
               ].map((l) => (
                 <li key={l.label}>
@@ -84,18 +88,6 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-        </div>
-
-        {/* ───── Accreditation row ───── */}
-        <div className="border-t border-line pt-10 pb-12 grid grid-cols-2 sm:grid-cols-4 gap-6 items-center">
-          {['Awwwards', 'CSS Design Awards', 'FWA', 'Webby'].map((name) => (
-            <div
-              key={name}
-              className="font-grotesk text-[11px] tracking-[0.18em] uppercase text-ink-faint border border-line rounded-full px-5 py-3 text-center"
-            >
-              {name}
-            </div>
-          ))}
         </div>
 
         {/* ───── Legal row ───── */}

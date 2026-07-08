@@ -153,7 +153,7 @@ export default async function EstimatePage({
               Book a discovery call →
             </Link>
             <a
-              href="mailto:hello@atthemeridian.co"
+              href="mailto:brooke@atthemeridian.co"
               className="flex-1 text-center py-4 px-6 rounded-full text-sm font-medium border border-line-strong text-ink hover:bg-accent hover:border-accent hover:text-bg transition-all"
             >
               Ask a question

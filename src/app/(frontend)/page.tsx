@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import QuickContactForm from '@/components/QuickContactForm'
-import ServicesAccordion from '@/components/ServicesAccordion'
+import TypedIndustries from '@/components/TypedIndustries'
 import headshot from '@/lib/headshot.jpg'
 
 // Unsplash helper (matches the convention used elsewhere in the site)
@@ -9,9 +8,9 @@ const HU = (id: string, w = 900, h = 1100) =>
   `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&fit=crop&auto=format&q=80`
 
 export const metadata = {
-  title: 'At The Meridian — Build the business you always pictured',
+  title: 'At The Meridian — A custom website, and every step from search to sales call',
   description:
-    'An online growth studio for $1M+ operators. You built something real — we engineer the growth that takes it to its peak. Site, SEO, paid, CRM, and lead generation as one system.',
+    'We build the digital growth systems that help service businesses generate leads, automate operations, and grow with less manual work — then we become the team that grows them.',
 }
 
 // ─────────── Showcase cards (hero device strip) ───────────
@@ -23,107 +22,83 @@ const showcase = [
   { src: HU('1517245386807-bb43f82c33c4'), alt: 'Design workshop' },
 ]
 
-// Industries we build for
-const industries = [
-  'Landscape Design',
-  'Concrete & Masonry',
-  'Construction',
-  'Interior Design',
-  'Custom Home Builders',
-  'Remodelers',
+// The ceiling every owner hits
+const problems = [
+  { title: 'Leads come inconsistently', body: 'Flood one month, silence the next — never something you can forecast.' },
+  { title: 'Follow-up falls through the cracks', body: 'Good prospects go cold because no one got back to them in time.' },
+  { title: 'Admin work consumes the week', body: 'The busywork that keeps the lights on eats the hours that would grow the business.' },
+  { title: 'Everything depends on someone remembering', body: 'Every process lives in a person’s head instead of a system that runs on its own.' },
+  { title: 'Growth creates chaos, not freedom', body: 'More work should mean more freedom. Instead it means more things to keep from breaking.' },
 ]
 
-// The "where you are → where you could be" contrast
-const nowState = [
-  'Chasing the next referral — one slow quarter from empty.',
-  'A calendar that floods in spring and goes silent by winter.',
-  'Watching the national chains take the top of every search.',
-  'Doing the work, without the payoff you pictured.',
-]
-const futureState = [
-  'A pipeline you can forecast — months out, not weeks.',
-  'The phone ringing with ready buyers, not price-shoppers.',
-  'Top of local search, owning your market.',
-  'The business running like you always said it would.',
+// The Meridian System — the connected ecosystem
+const systemNodes = [
+  { label: 'Traffic', note: 'The right people find you', icon: 'traffic' },
+  { label: 'Website', note: 'Built to convert, not just look good', icon: 'code' },
+  { label: 'Landing Pages', note: 'A page for every offer', icon: 'page' },
+  { label: 'CRM', note: 'Every lead captured & organized', icon: 'crm' },
+  { label: 'Automation', note: 'Follow-up that never forgets', icon: 'bolt' },
+  { label: 'Sales Pipeline', note: 'Prospects moved to close', icon: 'pipeline' },
+  { label: 'Onboarding', note: 'New clients handled smoothly', icon: 'onboard' },
+  { label: 'Retention', note: 'Clients who stay and grow', icon: 'shield' },
+  { label: 'Referrals', note: 'Happy clients feed the top', icon: 'referral' },
 ]
 
-// Services
-const featuredService = {
-  name: 'High-Performance Websites',
-  body: 'Conversion-engineered, hand-coded sites built to load fast, rank, and turn visitors into pipeline. Every page, headline, and funnel is engineered against a single metric: revenue produced. Beauty is a byproduct.',
-  points: [
-    'Hand-coded — no template bloat',
-    'Conversion-first UX and copy',
-    'Built to outrank on technical SEO',
-    'Analytics & CRM wired in from day one',
-  ],
-}
-const why = [
+// Outcomes
+const outcomes = [
+  'Generate leads consistently',
+  'Eliminate repetitive work',
+  'Convert more prospects',
+  'Follow up automatically',
+  'Scale without hiring too early',
+  'Understand your marketing with real data',
+]
+
+// Three phases
+const phases = [
   {
-    title: 'The Full Revenue Stack',
-    body: 'Site, SEO, paid, CRM, and lead gen under one roof. Most agencies do one thing well and outsource the rest — we own all of it, so nothing breaks at the seams.',
-    icon: 'scale',
+    tag: 'Phase One',
+    name: 'Build',
+    body: 'We build the system — the foundation everything else runs on.',
+    points: ['Website', 'Funnels', 'Tracking', 'CRM', 'Automation', 'SEO'],
   },
   {
-    title: 'Operator-Minded',
-    body: 'We came up on the operator side, where the only metric that mattered was revenue. We optimize for outcomes, not deliverables shipped.',
-    icon: 'bolt',
+    tag: 'Phase Two',
+    name: 'Launch',
+    body: 'We go live, then learn — testing and tuning against real behavior.',
+    points: ['Test', 'Optimize', 'Collect data', 'Improve conversions'],
   },
   {
-    title: 'Senior Partners Only',
-    body: 'We stay small on purpose. Every engagement is led by a senior partner — never handed off to a junior learning on your budget.',
-    icon: 'code',
-  },
-  {
-    title: 'Total Transparency',
-    body: 'Ad spend stays in your accounts — we manage, you own. Quarterly reviews show exactly what changed and what it returned. A real paper trail.',
-    icon: 'shield',
-  },
-  {
-    title: 'Built to Compound',
-    body: 'The launch is the starting line, not the finish. Every build rolls into a system that compounds month after month.',
-    icon: 'tag',
-  },
-  {
-    title: 'First-Priority Support',
-    body: 'Retainer clients get same-business-day response. One tracked channel, clear priorities — so nothing slips through the cracks.',
-    icon: 'support',
+    tag: 'Phase Three',
+    name: 'Scale',
+    body: 'We become the team that grows it — month after month.',
+    points: ['Monthly growth strategy', 'SEO', 'Funnels', 'Automation improvements', 'Reporting', 'AI implementation'],
   },
 ]
 
-const stats = [
-  { value: 'Predictable', label: 'Pipeline you can forecast, month after month' },
-  { value: 'Top', label: 'Of local search in your market' },
-  { value: '90 days', label: 'To measurable, tracked ROI' },
-  { value: '$1M+', label: 'Operators we help reach their peak' },
+// 30-Day Growth Sprint activities
+const sprint = [
+  'Monitoring conversions',
+  'Improving pages',
+  'Optimizing funnels',
+  'Fixing bottlenecks',
+  'Improving SEO',
+  'Adjusting automations',
+  'Reviewing analytics',
 ]
 
-// Monthly retainers — framed as three stages of the climb.
-// Each tier shows the full feature list; not-included items render greyed with an ×.
-const tierMeta = [
-  { stage: 'Basecamp', tier: 'Tier 1', name: 'Maintain & Optimize', price: '$3,500', tagline: 'Protect what you’ve built and start the steady climb.', popular: false, adNote: '' },
-  { stage: 'Momentum', tier: 'Tier 2', name: 'Grow', price: '$5,500', tagline: 'Build real momentum — an active growth engine and paid social.', popular: true, adNote: 'Ad spend billed to your account · rec. $750–$1,000/mo' },
-  { stage: 'Summit', tier: 'Tier 3', name: 'Scale', price: '$8,500', tagline: 'The summit — a full partner running your entire presence.', popular: false, adNote: 'Ad spend billed to your account · rec. $1,000–$3,000/mo' },
+// Illustrative before/after proof (representative — not a specific client)
+const proof = [
+  { label: 'Qualified leads / month', before: '8', after: '42' },
+  { label: 'Follow-up', before: 'Manual', after: 'Automated booking' },
+  { label: 'Landing page conversion', before: '~1%', after: '6%' },
 ]
 
-// values are [Tier 1, Tier 2, Tier 3]; true = included, false = not included,
-// a string = included with a tier-specific amount.
-const features: { label: string; values: (boolean | string)[] }[] = [
-  { label: 'Hosting, security, backups & all updates', values: [true, true, true] },
-  { label: 'Website improvements', values: ['5 hrs/mo', '10 hrs/mo', '15 hrs/mo'] },
-  { label: 'On-page + technical SEO', values: [true, true, true] },
-  { label: 'Rank tracking + monthly report', values: [true, true, true] },
-  { label: 'Google Business Profile & analytics', values: [true, true, true] },
-  { label: 'First-priority, same-day support', values: [true, true, true] },
-  { label: 'Full SEO strategy + 2 blog posts/mo', values: [false, true, true] },
-  { label: 'Meta ads management', values: [false, true, true] },
-  { label: 'Email / SMS automation', values: [false, true, true] },
-  { label: 'Lead-gen strategy & CRO', values: [false, true, true] },
-  { label: 'Strategy calls', values: [false, 'Monthly', 'Biweekly + QBR'] },
-  { label: 'Managed Google Ads + LSA, daily reporting', values: [false, false, true] },
-  { label: 'Expanded Meta — retargeting & lookalikes', values: [false, false, true] },
-  { label: 'Monthly lead-gen landing page', values: [false, false, true] },
-  { label: 'Advanced CRM, pipeline & lead scoring', values: [false, false, true] },
+// Growth Partnership teaser
+const partnerships = [
+  { name: 'Momentum', term: '3-month minimum', body: 'For businesses launching their digital systems.' },
+  { name: 'Growth', term: '3-month minimum', body: 'Consistent optimization and lead generation.' },
+  { name: 'Scale', term: '6-month minimum', body: 'A long-term strategic partner. AI, SEO, automation, content, reporting — everything.' },
 ]
 
 // ─────────── Small inline icon set ───────────
@@ -139,22 +114,26 @@ function Glyph({ name }: { name: string }) {
   switch (name) {
     case 'code':
       return <svg className={c} viewBox="0 0 24 24" {...p}><path d="M16 18l6-6-6-6M8 6l-6 6 6 6" /></svg>
-    case 'scale':
-      return <svg className={c} viewBox="0 0 24 24" {...p}><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6" /></svg>
-    case 'support':
-      return <svg className={c} viewBox="0 0 24 24" {...p}><path d="M4 14v-3a8 8 0 0116 0v3" /><rect x="2" y="14" width="4" height="6" rx="1" /><rect x="18" y="14" width="4" height="6" rx="1" /></svg>
     case 'shield':
       return <svg className={c} viewBox="0 0 24 24" {...p}><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z" /></svg>
-    case 'tag':
-      return <svg className={c} viewBox="0 0 24 24" {...p}><path d="M20 12l-8 8-9-9V3h8l9 9z" /><circle cx="7.5" cy="7.5" r="1.2" /></svg>
     case 'bolt':
       return <svg className={c} viewBox="0 0 24 24" {...p}><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" /></svg>
     case 'check':
       return <svg className={c} viewBox="0 0 24 24" {...p}><path d="M20 6L9 17l-5-5" /></svg>
-    case 'x':
-      return <svg className={c} viewBox="0 0 24 24" {...p}><path d="M18 6L6 18M6 6l12 12" /></svg>
     case 'peak':
       return <svg className={c} viewBox="0 0 24 24" {...p}><path d="M3 20h18L13.5 5l-3.2 6-2.3-3z" /></svg>
+    case 'traffic':
+      return <svg className={c} viewBox="0 0 24 24" {...p}><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18" /></svg>
+    case 'page':
+      return <svg className={c} viewBox="0 0 24 24" {...p}><rect x="5" y="3" width="14" height="18" rx="2" /><path d="M8 8h8M8 12h8M8 16h5" /></svg>
+    case 'crm':
+      return <svg className={c} viewBox="0 0 24 24" {...p}><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 00-3-3.87" /></svg>
+    case 'pipeline':
+      return <svg className={c} viewBox="0 0 24 24" {...p}><path d="M3 6h18l-7 8v6l-4-2v-4z" /></svg>
+    case 'onboard':
+      return <svg className={c} viewBox="0 0 24 24" {...p}><path d="M20 6L9 17l-5-5" /><circle cx="12" cy="12" r="10" /></svg>
+    case 'referral':
+      return <svg className={c} viewBox="0 0 24 24" {...p}><circle cx="6" cy="12" r="3" /><circle cx="18" cy="6" r="3" /><circle cx="18" cy="18" r="3" /><path d="M8.6 10.7l6.8-3.4M8.6 13.3l6.8 3.4" /></svg>
     default:
       return null
   }
@@ -163,31 +142,38 @@ function Glyph({ name }: { name: string }) {
 export default function HomePage() {
   return (
     <div className="bg-bg text-ink font-sans antialiased overflow-x-hidden">
-      {/* ─────────────────────────── HERO ─────────────────────────── */}
+      {/* ─────────────────────────── HERO / THE VISION ─────────────────────────── */}
       <section className="relative">
         <div className="absolute inset-0 dawn-hero pointer-events-none" aria-hidden />
         <div className="container-tight relative pt-36 sm:pt-40 pb-20 text-center">
-          {/* badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-line bg-white/80 backdrop-blur px-4 py-1.5 text-sm shadow-sm mb-10">
             <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-            <span className="text-ink-dim">Online growth studio · for $1M+ operators</span>
+            <span className="text-ink-dim">Digital growth systems studio</span>
           </div>
 
-          <h1 className="font-display font-semibold text-ink tracking-[-0.02em] leading-[1.02] text-[clamp(2.6rem,6.5vw,5.5rem)] max-w-[17ch] mx-auto">
-            Build the business you{' '}
-            <em className="italic font-light hero-italic-grad">always pictured</em>
+          <h1 className="font-display font-semibold text-ink tracking-[-0.02em] leading-[1.04] text-[clamp(2.5rem,6vw,5.25rem)] max-w-[18ch] mx-auto">
+            We build custom websites{' '}
+            <em className="italic font-light hero-italic-grad">and every step from search to sales call</em>
           </h1>
+          <div className="mt-6 font-grotesk text-xs sm:text-sm tracking-[0.3em] uppercase text-ink-dim">
+            For service businesses
+          </div>
 
-          <p className="mx-auto mt-7 max-w-[52ch] text-ink-dim text-lg leading-relaxed">
-            At the meridian, the sun reaches its highest point. That&apos;s where your business is
-            headed — and we engineer the climb. Site, SEO, paid, CRM, and lead generation, built as
-            one system that compounds.
+          <p className="mx-auto mt-7 max-w-[68ch] text-ink-dim text-lg leading-relaxed">
+            Most web designers build for the site, not for the system your business actually runs
+            on, so you get something beautiful that doesn&apos;t bring in a single lead. We build the
+            site and the growth engine around it, so the leads keep coming while you run the
+            business.
           </p>
 
           <div className="mt-9 flex items-center justify-center gap-3">
-            <Link href="/contact" className="btn-primary text-sm">Book a discovery call</Link>
-            <Link href="/#retainers" className="btn-ghost text-sm">See the path</Link>
+            <Link href="/contact" className="btn-primary text-sm">Get my growth plan</Link>
+            <Link href="/#system" className="btn-ghost text-sm">See how it works</Link>
           </div>
+          <p className="mt-4 text-sm text-ink-faint max-w-[52ch] mx-auto">
+            Free 30-minute call. No pitch. You&apos;ll leave with a clear plan for your system,
+            whether we work together or not.
+          </p>
 
           {/* device showcase strip */}
           <div className="mt-16 sm:mt-20">
@@ -210,73 +196,272 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─────────────────────────── INDUSTRIES ─────────────────────────── */}
-      <section id="work" className="container-tight py-12 border-y border-line scroll-mt-24">
-        <p className="text-center text-xs uppercase tracking-[0.18em] text-ink-faint mb-6">
-          Built for high-ticket trades
-        </p>
-        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-          {industries.map((name) => (
-            <span
-              key={name}
-              className="font-display text-base sm:text-lg font-medium text-ink-faint hover:text-ink-dim transition-colors"
-            >
-              {name}
-            </span>
-          ))}
-        </div>
+      {/* ─────────────────────────── INDUSTRIES (typewriter) ─────────────────────────── */}
+      <section className="container-tight py-14 border-y border-line">
+        <TypedIndustries />
       </section>
 
-      {/* ─────────────────────────── TRANSFORMATION ─────────────────────────── */}
+      {/* ─────────────────────────── THE PROBLEMS ─────────────────────────── */}
       <section className="relative">
         <div className="absolute inset-0 dawn-soft pointer-events-none" aria-hidden />
         <div className="container-tight relative py-24 lg:py-32">
           <div className="max-w-2xl">
-            <span className="eyebrow">The climb</span>
+            <span className="eyebrow">The ceiling</span>
             <h2 className="font-display font-semibold text-ink tracking-[-0.02em] leading-[1.08] text-[clamp(2rem,4.5vw,3.5rem)] mt-5">
-              You&apos;ve already done the hard part
+              Every owner eventually hits the same ceiling
             </h2>
             <p className="mt-5 text-ink-dim text-lg leading-relaxed">
-              You built something real. The next climb isn&apos;t more hustle — it&apos;s the system
-              that turns the work you&apos;ve already done into the growth you pictured.
+              It isn’t a lack of effort. It’s that the business runs on people remembering to do
+              things — and that only scales so far.
             </p>
           </div>
 
-          <div className="mt-14 grid md:grid-cols-2 gap-6">
-            {/* where you are now */}
-            <div className="rounded-3xl border border-line bg-white/70 backdrop-blur p-8 lg:p-10">
-              <div className="text-xs uppercase tracking-[0.16em] text-ink-faint mb-6">
-                Where you are now
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {problems.map((p) => (
+              <div key={p.title} className="rounded-2xl border border-line bg-white/70 backdrop-blur p-7">
+                <h3 className="font-display text-lg font-medium text-ink">{p.title}</h3>
+                <p className="mt-2 text-sm text-ink-dim leading-relaxed">{p.body}</p>
               </div>
-              <ul className="space-y-4">
-                {nowState.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-ink-dim">
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-ink-faint shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* where you could be */}
-            <div className="rounded-3xl border-2 border-accent bg-gradient-to-br from-sky-tint-soft/40 to-white p-8 lg:p-10 shadow-[0_24px_60px_rgba(2,132,199,0.12)]">
-              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-accent mb-6">
-                <Glyph name="peak" /> Where you could be
-              </div>
-              <ul className="space-y-4">
-                {futureState.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-ink">
-                    <span className="text-accent mt-0.5 shrink-0"><Glyph name="check" /></span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+            ))}
+            <div className="rounded-2xl border-2 border-accent bg-gradient-to-br from-sky-tint-soft/40 to-white p-7 shadow-[0_24px_60px_rgba(2,132,199,0.12)] flex flex-col justify-center">
+              <span className="text-accent"><Glyph name="peak" /></span>
+              <p className="mt-3 font-display text-xl font-medium text-ink leading-snug">
+                We build systems that solve all of it.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─────────────────────────── ABOUT + STATS ─────────────────────────── */}
+      {/* ─────────────────────────── THE MERIDIAN SYSTEM ─────────────────────────── */}
+      <section id="system" className="bg-bg-alt border-y border-line scroll-mt-20">
+        <div className="container-tight py-24 lg:py-32">
+          <div className="max-w-2xl">
+            <span className="eyebrow">The Meridian System</span>
+            <h2 className="font-display font-semibold text-ink tracking-[-0.02em] leading-[1.05] text-[clamp(2rem,4.5vw,3.5rem)] mt-5">
+              One connected growth engine
+            </h2>
+            <p className="mt-5 text-ink-dim text-lg leading-relaxed">
+              Not a pile of services — a single system where every piece feeds the next. Traffic
+              becomes leads, leads become clients, clients become referrals, and referrals feed the
+              top again. It compounds.
+            </p>
+          </div>
+
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {systemNodes.map((n, i) => (
+              <div key={n.label} className="relative rounded-2xl border border-line bg-white p-6 shadow-sm">
+                <div className="flex items-center gap-3">
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-accent/10 text-accent shrink-0">
+                    <Glyph name={n.icon} />
+                  </span>
+                  <div>
+                    <div className="font-grotesk text-[11px] tracking-[0.16em] uppercase text-ink-faint">
+                      {String(i + 1).padStart(2, '0')}
+                    </div>
+                    <div className="font-display text-lg font-medium text-ink leading-tight">{n.label}</div>
+                  </div>
+                </div>
+                <p className="mt-3 text-sm text-ink-dim leading-relaxed">{n.note}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 flex items-center justify-center gap-3 text-sm text-ink-faint">
+            <span className="h-px w-10 bg-line-strong" />
+            <span className="font-grotesk tracking-[0.14em] uppercase text-xs">Referrals feed traffic — the loop closes</span>
+            <span className="h-px w-10 bg-line-strong" />
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────────────────── THE OUTCOMES ─────────────────────────── */}
+      <section className="container-tight py-24 lg:py-32">
+        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-20 items-center">
+          <div>
+            <span className="eyebrow">The outcomes</span>
+            <h2 className="font-display font-semibold text-ink tracking-[-0.02em] leading-[1.05] text-[clamp(2rem,4.5vw,3.5rem)] mt-5 max-w-[14ch]">
+              We help you…
+            </h2>
+            <p className="mt-5 text-ink-dim text-lg leading-relaxed max-w-[46ch]">
+              Every service — websites, funnels, SEO, CRM, automation, AI, analytics — exists to
+              deliver these. Not deliverables. Outcomes.
+            </p>
+          </div>
+          <ul className="grid sm:grid-cols-2 gap-4">
+            {outcomes.map((o) => (
+              <li key={o} className="flex items-start gap-3 rounded-2xl border border-line bg-white p-5 shadow-sm">
+                <span className="text-accent mt-0.5 shrink-0"><Glyph name="check" /></span>
+                <span className="text-ink font-medium leading-snug">{o}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ─────────────────────────── THE PROCESS (3 phases) ─────────────────────────── */}
+      <section className="bg-bg-alt border-y border-line">
+        <div className="container-tight py-24 lg:py-32">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="eyebrow justify-center">How it works</span>
+            <h2 className="font-display font-semibold text-ink tracking-[-0.02em] leading-[1.05] text-[clamp(2rem,4.5vw,3.5rem)] mt-5">
+              Build. Launch. Scale.
+            </h2>
+            <p className="mt-5 text-ink-dim text-lg leading-relaxed">
+              Three phases that turn a one-time build into a partnership that keeps compounding.
+            </p>
+          </div>
+
+          <div className="mt-16 grid lg:grid-cols-3 gap-6">
+            {phases.map((ph, i) => (
+              <div
+                key={ph.name}
+                className={[
+                  'relative rounded-3xl bg-white p-8 shadow-sm flex flex-col',
+                  i === 2 ? 'border-2 border-accent shadow-[0_24px_60px_rgba(2,132,199,0.12)]' : 'border border-line',
+                ].join(' ')}
+              >
+                <div className="font-grotesk text-[11px] tracking-[0.18em] uppercase text-accent">{ph.tag}</div>
+                <h3 className="font-display text-2xl font-semibold text-ink mt-2">{ph.name}</h3>
+                <p className="mt-3 text-sm text-ink-dim leading-relaxed">{ph.body}</p>
+                <ul className="mt-6 flex flex-wrap gap-2 border-t border-line pt-6">
+                  {ph.points.map((pt) => (
+                    <li
+                      key={pt}
+                      className="text-xs font-grotesk tracking-wide rounded-full border border-line px-3 py-1.5 text-ink-dim"
+                    >
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────────────────── 30 DAYS OF GROWTH ─────────────────────────── */}
+      <section className="relative">
+        <div className="absolute inset-0 dawn-hero pointer-events-none" aria-hidden />
+        <div className="container-tight relative py-24 lg:py-32">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div>
+              <span className="eyebrow">The launch is just the start</span>
+              <h2 className="font-display font-semibold text-ink tracking-[-0.02em] leading-[1.05] text-[clamp(2rem,4.5vw,3.5rem)] mt-5">
+                30 Days of Growth
+              </h2>
+              <p className="mt-5 text-ink-dim text-lg leading-relaxed max-w-[46ch]">
+                A great website is the starting line, not the finish. That&apos;s why every launch
+                flows into a <span className="text-ink font-medium">growth partnership</span>, opening
+                with a focused 30-day sprint where we actively work the system instead of just
+                keeping the lights on.
+              </p>
+              <ul className="mt-8 grid sm:grid-cols-2 gap-x-6 gap-y-3">
+                {sprint.map((s) => (
+                  <li key={s} className="flex items-start gap-2.5 text-sm text-ink">
+                    <span className="text-accent mt-0.5 shrink-0"><Glyph name="check" /></span>
+                    {s}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-3xl border border-line bg-white p-8 lg:p-10 shadow-[0_24px_70px_rgba(15,23,42,0.10)]">
+              <div className="inline-flex items-center gap-2 rounded-full bg-accent/10 text-accent px-3 py-1 text-xs font-grotesk tracking-[0.14em] uppercase">
+                Day 25 · The Growth Review
+              </div>
+              <p className="mt-5 font-display text-xl lg:text-2xl leading-[1.4] text-ink">
+                “Here’s where we started. Here’s what happened. Here’s what we learned. And here’s
+                what I’d do over the next 90 days.”
+              </p>
+              <p className="mt-6 text-ink-dim leading-relaxed">
+                By day 25, the results are already on the table. Choosing the growth partnership that
+                fits is the obvious next step.
+              </p>
+              <Link href="/work-with-us#partnerships" className="mt-8 inline-flex btn-ghost text-sm">
+                See growth partnerships →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────────────────── PROOF (illustrative) ─────────────────────────── */}
+      <section className="container-tight py-24 lg:py-32">
+        <div className="text-center max-w-2xl mx-auto">
+          <span className="eyebrow justify-center">The transformation</span>
+          <h2 className="font-display font-semibold text-ink tracking-[-0.02em] leading-[1.05] text-[clamp(2rem,4.5vw,3.5rem)] mt-5">
+            It’s not about a prettier website
+          </h2>
+          <p className="mt-5 text-ink-dim text-lg leading-relaxed">
+            It’s about what the system changes. Here’s the kind of shift owners care about.
+          </p>
+        </div>
+
+        <div className="mt-14 grid sm:grid-cols-3 gap-5">
+          {proof.map((p) => (
+            <div key={p.label} className="rounded-2xl border border-line bg-white p-7 shadow-sm">
+              <div className="text-xs uppercase tracking-[0.16em] text-ink-faint">{p.label}</div>
+              <div className="mt-5 flex items-center gap-3">
+                <div className="flex-1">
+                  <div className="text-[11px] uppercase tracking-wide text-ink-faint">Before</div>
+                  <div className="font-display text-2xl font-semibold text-ink-faint/70 line-through decoration-1">{p.before}</div>
+                </div>
+                <span className="text-accent text-xl">→</span>
+                <div className="flex-1">
+                  <div className="text-[11px] uppercase tracking-wide text-accent">After</div>
+                  <div className="font-display text-3xl font-semibold text-ink">{p.after}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="mt-8 text-center text-xs text-ink-faint max-w-2xl mx-auto">
+          Figures are illustrative and representative of the kind of results the system is built to
+          produce — not from a specific client engagement.
+        </p>
+      </section>
+
+      {/* ─────────────────────────── GROWTH PARTNERSHIP TEASER ─────────────────────────── */}
+      <section className="bg-bg-alt border-y border-line">
+        <div className="container-tight py-24 lg:py-32">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="eyebrow justify-center">Growth Partnerships</span>
+            <h2 className="font-display font-semibold text-ink tracking-[-0.02em] leading-[1.05] text-[clamp(2rem,4.5vw,3.5rem)] mt-5">
+              We become the team that grows it
+            </h2>
+            <p className="mt-5 text-ink-dim text-lg leading-relaxed">
+              Once the system is live, we stay on as your growth team — optimizing, testing, and
+              building month after month. Choose the pace of your climb.
+            </p>
+          </div>
+
+          <div className="mt-16 grid lg:grid-cols-3 gap-6">
+            {partnerships.map((pp, i) => (
+              <div
+                key={pp.name}
+                className={[
+                  'rounded-3xl bg-white p-8 shadow-sm flex flex-col',
+                  i === 1 ? 'border-2 border-accent shadow-[0_24px_60px_rgba(2,132,199,0.12)]' : 'border border-line',
+                ].join(' ')}
+              >
+                <div className="flex items-center gap-2 text-accent">
+                  <Glyph name="peak" />
+                  <span className="font-grotesk text-[11px] tracking-[0.16em] uppercase">{pp.term}</span>
+                </div>
+                <h3 className="font-display text-2xl font-semibold text-ink mt-3">{pp.name}</h3>
+                <p className="mt-3 text-sm text-ink-dim leading-relaxed flex-1">{pp.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link href="/work-with-us" className="btn-primary text-sm">Explore how we work together</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────────────────── ABOUT ─────────────────────────── */}
       <section id="about" className="container-tight py-24 lg:py-32 scroll-mt-24">
         <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-20">
           <div>
@@ -296,256 +481,26 @@ export default function HomePage() {
           </div>
           <div>
             <p className="font-display text-2xl sm:text-3xl lg:text-[2.5rem] leading-[1.25] tracking-[-0.01em] text-ink">
-              We speak the language of growth, not deliverables. You&apos;ve already proven the
-              business works — we engineer the system that takes it to its peak, so the work compounds
-              instead of breaking at the seams.
+              We speak the language of growth, not deliverables. You’ve already proven the business
+              works — we build the system that takes it further, so it keeps moving so you can focus
+              elsewhere.
             </p>
 
             <div className="mt-12 grid sm:grid-cols-2 gap-x-12 gap-y-6 text-ink-dim leading-relaxed">
               <p>
-                Most agencies optimize for output. We optimize for outcomes — because we came up on
-                the operator side, where the only metric that mattered was the business getting where
-                you always knew it could.
+                I&apos;m Brooke, the engineer behind At The Meridian. I spent five years in corporate
+                software, building custom applications and websites from the ground up. That&apos;s
+                where I learned to see the whole system: not just clean code, but the psychology
+                behind how people search, how they move through a page, and the messaging that
+                actually gets them to act.
               </p>
               <p>
-                We stay small on purpose. Every engagement is led by a senior partner, and we only
-                take on the climbs we believe we can summit with you.
+                My passion is results, and doing whatever it takes to reach them. I&apos;ve built
+                sites that looked beautiful and delivered nothing, and that&apos;s exactly why every
+                package I offer includes a follow-through strategy. A website is where it starts, not
+                where the work ends. My job is making sure it pays off.
               </p>
             </div>
-
-            <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-8 border-t border-line pt-12">
-              {stats.map((s) => (
-                <div key={s.label}>
-                  <div className="font-display text-3xl lg:text-4xl font-semibold text-ink tracking-tight">
-                    {s.value}
-                  </div>
-                  <div className="mt-2 text-xs uppercase tracking-wider text-ink-faint leading-snug">
-                    {s.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────────────────────── SERVICES ─────────────────────────── */}
-      <section id="services" className="bg-bg-alt border-y border-line">
-        <div className="container-tight py-24 lg:py-32">
-          <span className="eyebrow">The engine</span>
-          <h2 className="font-display font-semibold text-ink tracking-[-0.02em] leading-[1.05] text-[clamp(2rem,4.5vw,3.5rem)] mt-5 max-w-[16ch]">
-            Everything it takes to climb
-          </h2>
-          <p className="mt-5 max-w-[54ch] text-ink-dim text-lg leading-relaxed">
-            Five services, one team — no handoffs, no silos. The engine that turns the business you
-            built into the business you pictured.
-          </p>
-
-          <div className="mt-14 grid lg:grid-cols-2 gap-6">
-            {/* Left: featured + list */}
-            <div className="space-y-4">
-              <div className="rounded-2xl border border-line bg-white p-7 shadow-sm">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-accent/10 text-accent">
-                    <Glyph name="bolt" />
-                  </span>
-                  <h3 className="font-display text-xl font-medium text-ink">{featuredService.name}</h3>
-                </div>
-                <p className="text-ink-dim leading-relaxed mb-5">{featuredService.body}</p>
-                <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-3">
-                  {featuredService.points.map((pt) => (
-                    <li key={pt} className="flex items-start gap-2.5 text-sm text-ink">
-                      <span className="mt-1 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <ServicesAccordion />
-            </div>
-
-            {/* Right: client reporting portal screenshot */}
-            <div className="relative rounded-2xl border border-line overflow-hidden bg-gradient-to-br from-sky-tint-soft/60 via-white to-white shadow-sm min-h-[420px] flex flex-col items-center justify-center p-6 lg:p-8">
-              <div className="absolute inset-0 dawn-hero opacity-70" aria-hidden />
-              <div className="relative w-full rounded-xl border border-line bg-white shadow-[0_24px_60px_rgba(15,23,42,0.16)] overflow-hidden">
-                <div className="flex items-center gap-1.5 px-3 h-8 border-b border-line bg-bg-alt">
-                  <span className="w-2.5 h-2.5 rounded-full bg-spot-red/60" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-spot-yellow/70" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-accent/50" />
-                  <span className="ml-2 text-[10px] text-ink-faint font-grotesk tracking-wide">
-                    app.atthemeridian.com/portal
-                  </span>
-                </div>
-                <Image
-                  src="/images/dashboard.png"
-                  alt="At The Meridian client reporting portal — traffic, leads, rankings, conversion, revenue, and ROI"
-                  width={2290}
-                  height={1832}
-                  className="w-full h-auto"
-                />
-              </div>
-              <p className="relative mt-5 text-center text-sm text-ink-dim max-w-sm">
-                Every client gets a private portal — real-time reporting on the metrics that matter.
-                No black box, no monthly mystery.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────────────────────── WHY CHOOSE US ─────────────────────────── */}
-      <section className="container-tight py-24 lg:py-32 text-center">
-        <span className="eyebrow justify-center">Why operators choose us</span>
-        <h2 className="font-display font-semibold text-ink tracking-[-0.02em] leading-[1.05] text-[clamp(2rem,4.5vw,3.5rem)] mt-5 max-w-[16ch] mx-auto">
-          Proof it&apos;s more than a promise
-        </h2>
-
-        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left">
-          {why.map((w) => (
-            <div
-              key={w.title}
-              className="rounded-2xl border border-line bg-white p-7 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all"
-            >
-              <span className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-accent/10 text-accent mb-5">
-                <Glyph name={w.icon} />
-              </span>
-              <h3 className="font-display text-lg font-medium text-ink mb-2">{w.title}</h3>
-              <p className="text-sm text-ink-dim leading-relaxed">{w.body}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ─────────────────────────── RETAINERS (the climb) ─────────────────────────── */}
-      <section id="retainers" className="bg-bg-alt border-y border-line scroll-mt-20">
-        <div className="container-tight py-24 lg:py-32">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="eyebrow justify-center">The path</span>
-            <h2 className="font-display font-semibold text-ink tracking-[-0.02em] leading-[1.05] text-[clamp(2rem,4.5vw,3.5rem)] mt-5">
-              Three stages of the climb
-            </h2>
-            <p className="mt-5 text-ink-dim text-lg leading-relaxed">
-              The launch is the starting line. From there, every month compounds — pick the pace of
-              your climb, and we partner with you the whole way up.
-            </p>
-            <p className="mt-4 text-xs uppercase tracking-[0.16em] text-ink-faint">
-              3-month minimum · 90-day performance review built in
-            </p>
-          </div>
-
-          <div className="mt-16 grid lg:grid-cols-3 gap-6 items-start">
-            {tierMeta.map((t, ti) => (
-              <div
-                key={t.name}
-                className={[
-                  'relative rounded-3xl bg-white p-8 shadow-sm flex flex-col',
-                  t.popular
-                    ? 'border-2 border-accent shadow-[0_24px_70px_rgba(2,132,199,0.16)] lg:-mt-4'
-                    : 'border border-line',
-                ].join(' ')}
-              >
-                {t.popular && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-on-accent text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full">
-                    Most Popular
-                  </span>
-                )}
-                <div className="flex items-center gap-2 text-accent">
-                  <Glyph name="peak" />
-                  <span className="text-xs uppercase tracking-[0.16em] font-medium">{t.stage}</span>
-                </div>
-                <h3 className="font-display text-2xl font-semibold text-ink mt-3">{t.name}</h3>
-                <div className="text-xs uppercase tracking-[0.16em] text-ink-faint mt-1">{t.tier}</div>
-                <div className="mt-4 flex items-baseline gap-1">
-                  <span className="font-display text-4xl font-semibold text-ink tracking-tight">{t.price}</span>
-                  <span className="text-ink-faint text-sm">/mo</span>
-                </div>
-                <p className="mt-4 text-sm text-ink-dim leading-relaxed">{t.tagline}</p>
-
-                <ul className="mt-6 space-y-2.5 flex-1 border-t border-line pt-6">
-                  {features.map((f) => {
-                    const v = f.values[ti]
-                    const included = v !== false
-                    return (
-                      <li
-                        key={f.label}
-                        className={[
-                          'flex items-start gap-2.5 text-sm',
-                          included ? 'text-spot-lime' : 'text-ink-faint/60',
-                        ].join(' ')}
-                      >
-                        <span className={included ? 'text-spot-lime-bright mt-0.5 shrink-0' : 'text-ink-faint/45 mt-0.5 shrink-0'}>
-                          <Glyph name={included ? 'check' : 'x'} />
-                        </span>
-                        <span>
-                          {f.label}
-                          {typeof v === 'string' && (
-                            <span className="text-ink-faint"> · {v}</span>
-                          )}
-                        </span>
-                      </li>
-                    )
-                  })}
-                </ul>
-
-                <Link
-                  href="/contact"
-                  className={[
-                    'mt-8 inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium transition-all',
-                    t.popular
-                      ? 'btn-primary w-full'
-                      : 'border border-line-strong text-ink hover:border-accent hover:text-accent w-full',
-                  ].join(' ')}
-                >
-                  Book a discovery call
-                </Link>
-                {t.adNote && (
-                  <p className="mt-3 text-center text-xs text-ink-faint leading-snug">{t.adNote}</p>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <p className="mt-10 text-center text-sm text-ink-faint max-w-2xl mx-auto">
-            Not included: new site builds (scoped separately) and brand/photo/video work. Ad spend is
-            billed to your own accounts — we manage, you own. 10% off 6-month and 15% off 12-month
-            pay-in-full.
-          </p>
-        </div>
-      </section>
-
-      {/* ─────────────────────────── TESTIMONIAL ─────────────────────────── */}
-      <section className="container-tight py-24 lg:py-32">
-        <span className="eyebrow">From the trenches</span>
-        <div className="mt-10 grid lg:grid-cols-[1.3fr_0.7fr] gap-6 items-stretch">
-          <div className="rounded-2xl border border-line bg-white p-8 lg:p-12 shadow-sm flex flex-col justify-between">
-            <p className="font-display text-xl lg:text-2xl leading-[1.45] text-ink">
-              &ldquo;For the first time, I wasn&apos;t lying awake wondering where the next job was
-              coming from — the pipeline was just there. They rebuilt the site, then the funnel, and
-              inbound tripled. It&apos;s the business I always said we&apos;d become.&rdquo;
-            </p>
-            <div className="mt-8 flex items-center gap-4">
-              <Image
-                src={headshot}
-                alt="Client portrait"
-                width={48}
-                height={48}
-                className="rounded-full object-cover w-12 h-12"
-              />
-              <div>
-                <div className="font-medium text-ink">Founder, 7-figure trades business</div>
-                <div className="text-sm text-ink-faint">Retainer client · Tier 2 Grow</div>
-              </div>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-line bg-gradient-to-br from-sky-tint-soft/50 to-white p-8 lg:p-12 shadow-sm flex flex-col justify-center">
-            <div className="font-display text-5xl lg:text-6xl font-semibold text-ink tracking-tight leading-none">
-              The business they always pictured
-            </div>
-            <p className="mt-5 text-ink-dim leading-relaxed">
-              The operators who run both engines from day one are the ones who reach it — and see the
-              returns everyone else only talks about.
-            </p>
           </div>
         </div>
       </section>
@@ -556,26 +511,66 @@ export default function HomePage() {
         <div className="container-tight relative py-24 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <h2 className="font-display font-semibold text-ink tracking-[-0.02em] leading-[1.05] text-[clamp(2.2rem,5vw,4rem)] max-w-[14ch]">
-                Ready for the climb?{' '}
-                <em className="italic font-light hero-italic-grad">Let&apos;s map your path</em>
+              <span className="eyebrow">See where you could be</span>
+              <h2 className="mt-5 font-display font-semibold text-ink tracking-[-0.02em] leading-[1.05] text-[clamp(2.1rem,4.6vw,3.6rem)] max-w-[18ch]">
+                Every month without a system,{' '}
+                <em className="italic font-light hero-italic-grad">leads slip away</em>
               </h2>
-              <p className="mt-6 text-ink-dim text-lg max-w-[44ch]">
-                No pitch. We&apos;ll diagnose where the gaps are, where the leverage is, and whether
-                we&apos;re the right team to get you to the top. If we&apos;re not a fit, you&apos;ll
-                know in the first 10 minutes. If we are, you&apos;ll have a custom scope in two
-                business days.
+              <p className="mt-6 text-ink-dim text-lg max-w-[46ch]">
+                With us, your site gets built around your business, not the other way around. We start
+                by diagnosing your systems, bottlenecks, and pain points, then build to fix them, so
+                your site finally delivers the growth it was meant to. Here&apos;s what that shift
+                looks like.
               </p>
+
+              <div className="mt-8">
+                <Link href="/contact" className="btn-primary text-sm">Get in touch</Link>
+                <p className="mt-4 text-xs text-ink-faint max-w-[40ch] leading-snug">
+                  Free 30-minute call. No pitch. You&apos;ll leave with a clear plan whether we work
+                  together or not.
+                </p>
+              </div>
+
               <div className="mt-8 flex flex-col gap-2 font-grotesk text-sm">
-                <a href="mailto:hello@atthemeridian.com" className="text-ink hover:text-accent transition-colors">
-                  hello@atthemeridian.com
+                <a href="mailto:brooke@atthemeridian.co" className="text-ink hover:text-accent transition-colors">
+                  brooke@atthemeridian.co
                 </a>
-                <span className="text-ink-faint">atthemeridian.com</span>
+                <span className="text-ink-faint">atthemeridian.co</span>
               </div>
             </div>
 
-            <div className="rounded-3xl border border-line bg-white/70 backdrop-blur p-7 lg:p-9 shadow-[0_24px_70px_rgba(15,23,42,0.10)]">
-              <QuickContactForm />
+            {/* Illustrative "where you could be" growth chart */}
+            <div className="rounded-3xl border border-line bg-white/80 backdrop-blur p-6 lg:p-8 shadow-[0_24px_70px_rgba(15,23,42,0.10)]">
+              <svg viewBox="0 0 320 180" className="w-full h-auto" role="img" aria-label="Illustrative chart: leads staying flat with your site today versus rising with the Meridian system">
+                <defs>
+                  <linearGradient id="growthFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#0284c7" stopOpacity="0.22" />
+                    <stop offset="100%" stopColor="#0284c7" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+                {/* area under the rising line */}
+                <path d="M20,140 C120,132 190,92 300,40 L300,165 L20,165 Z" fill="url(#growthFill)" />
+                {/* flat "today" line */}
+                <path d="M20,140 C110,138 190,142 300,138" fill="none" stroke="#cbd5e1" strokeWidth="3" strokeLinecap="round" />
+                {/* rising "with system" line */}
+                <path d="M20,140 C120,132 190,92 300,40" fill="none" stroke="#0284c7" strokeWidth="3.5" strokeLinecap="round" />
+                {/* endpoint markers */}
+                <circle cx="300" cy="138" r="4" fill="#94a3b8" />
+                <circle cx="300" cy="40" r="5" fill="#0284c7" />
+                <circle cx="20" cy="140" r="4" fill="#64748b" />
+              </svg>
+              <div className="mt-4 flex items-center justify-between text-xs">
+                <span className="flex items-center gap-2 text-ink-faint">
+                  <span className="w-3 h-0.5 rounded bg-[#cbd5e1]" /> Your site today
+                </span>
+                <span className="flex items-center gap-2 text-ink font-medium">
+                  <span className="w-3 h-0.5 rounded bg-accent" /> With the growth engine
+                </span>
+              </div>
+              <p className="mt-3 text-[11px] text-ink-faint leading-snug">
+                Illustrative — representative of the shift the system is built to create, not a
+                specific client result.
+              </p>
             </div>
           </div>
         </div>

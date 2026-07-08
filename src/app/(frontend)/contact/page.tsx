@@ -4,7 +4,7 @@ import DiscoveryForm from '@/components/DiscoveryForm'
 export const metadata = {
   title: 'Contact — At The Meridian',
   description:
-    'Book a 30-minute discovery call. We’ll diagnose the gaps, find the leverage, and tell you honestly whether we’re the right team.',
+    'Book a free 30-minute strategy call. We’ll pinpoint where your leads are leaking and what your system needs to actually bring in business. No pitch.',
 }
 
 const steps = [
@@ -39,12 +39,13 @@ export default function ContactPage() {
           }}
         />
         <div className="max-w-site mx-auto px-5 sm:px-10 lg:px-20 relative z-10">
-          <span className="eyebrow-dark">Book a discovery call</span>
-          <h1 className="font-serif font-light tracking-tight leading-[0.98] text-[44px] sm:text-6xl lg:text-7xl mt-7 mb-7 max-w-[18ch]">
-            Let’s see if we’re <em className="hero-italic-grad font-light">built for each other.</em>
+          <span className="eyebrow-dark">Book a free strategy call</span>
+          <h1 className="font-serif font-light tracking-tight leading-[0.98] text-[44px] sm:text-6xl lg:text-7xl mt-7 mb-7 max-w-[20ch]">
+            Your website and your systems should be your hardest-working employee.{' '}
+            <em className="hero-italic-grad font-light">Let’s put it to work.</em>
           </h1>
-          <p className="text-ink-dim text-base sm:text-lg max-w-[52ch] leading-relaxed">
-            A 30-minute call. No pitch. We’ll diagnose where the gaps are, where the leverage is, and whether we’re the right team to close them.
+          <p className="text-ink-dim text-base sm:text-lg max-w-[54ch] leading-relaxed">
+            30 free minutes to uncover why your current setup underdelivers and what your growth system needs. No pitch.
           </p>
         </div>
       </header>
@@ -78,21 +79,21 @@ export default function ContactPage() {
                   Direct
                 </span>
                 <a
-                  href="mailto:hello@atthemeridian.co"
+                  href="mailto:brooke@atthemeridian.co"
                   className="block text-ink hover:text-accent transition-colors mb-2"
                 >
-                  hello@atthemeridian.co
+                  brooke@atthemeridian.co
                 </a>
                 <a
-                  href="https://instagram.com/atthemeridian"
+                  href="https://instagram.com/atthemeridian.co"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-ink-dim hover:text-accent transition-colors"
                 >
-                  @atthemeridian
+                  @atthemeridian.co
                 </a>
                 <p className="font-serif italic text-ink-faint text-sm mt-8">
-                  “We build technology that works — and keeps working.”
+                  Websites &amp; systems that convert search to sale.
                 </p>
               </div>
             </Reveal>

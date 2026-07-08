@@ -95,12 +95,17 @@ html {
   .heading-md { @apply text-display-sm heading-display text-ink; }
   .heading-sm { @apply text-2xl sm:text-3xl heading-display text-ink; }
 
-  /* Hero italic gradient — sky blue (deepened to read on white) */
+  /* Hero italic gradient — sky blue (deepened to read on white).
+     Italic glyphs overhang their box; padding + cloned box decoration keeps
+     the gradient clip from trimming the last letter on each wrapped line. */
   .hero-italic-grad {
     background: linear-gradient(135deg, #38bdf8 0%, #0284c7 55%, #075985 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    padding-right: 0.18em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 
   /* ─────────── Scroll Reveal ─────────── */
@@ -265,5 +270,26 @@ html {
     background:
       radial-gradient(80% 70% at 100% 0%, rgba(253, 200, 138, 0.16) 0%, rgba(255, 255, 255, 0) 58%),
       radial-gradient(70% 70% at 0% 100%, rgba(125, 211, 252, 0.16) 0%, rgba(255, 255, 255, 0) 60%);
+  }
+}
+
+/* ─────────── Typewriter caret blink ─────────── */
+@keyframes caretBlink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.caret-blink {
+  animation: caretBlink 1.05s steps(1) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .caret-blink {
+    animation: none;
+    opacity: 1;
   }
 }

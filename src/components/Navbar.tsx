@@ -50,8 +50,8 @@ export default function Navbar() {
   // ──────────────────────────────────────────────────────────────────────
   const navLinks: NavItem[] = [
     { label: 'Home', href: '/' },
-    { label: 'Services', href: '/#services' },
-    { label: 'Retainers', href: '/#retainers' },
+    { label: 'The System', href: '/#system' },
+    { label: 'Work With Us', href: '/work-with-us' },
     { label: 'About', href: '/#about' },
   ]
 
@@ -79,7 +79,7 @@ export default function Navbar() {
             At The Meridian
           </span>
           <span className="hidden md:inline-block font-grotesk text-ink-faint text-[11px] tracking-[0.18em] uppercase border-l border-line pl-4 ml-1">
-            Built to scale. Engineered to last.
+            Websites &amp; systems that convert search to sale
           </span>
         </Link>
 
@@ -140,7 +140,7 @@ export default function Navbar() {
             href="/contact"
             className="inline-flex items-center gap-2 bg-ink text-bg text-sm font-medium px-5 py-2.5 rounded-full hover:bg-accent hover:text-on-accent transition-all hover:-translate-y-0.5"
           >
-            Get in Touch <span aria-hidden>→</span>
+            Book a Strategy Session <span aria-hidden>→</span>
           </Link>
         </div>
 
@@ -202,7 +202,7 @@ export default function Navbar() {
                 className="mt-3 bg-ink text-bg text-sm font-medium px-5 py-2.5 rounded-full hover:bg-accent hover:text-on-accent transition-colors text-center"
                 onClick={() => setIsOpen(false)}
               >
-                Get in Touch →
+                Book a Strategy Session →
               </Link>
             </div>
           </motion.div>

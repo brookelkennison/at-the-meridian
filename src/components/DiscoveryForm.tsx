@@ -7,6 +7,7 @@ type StepId = 1 | 2 | 3 | 4 | 'success'
 type LeadPayload = {
   revenue?: string
   need?: string
+  needs?: string[]
   timeline?: string
   name?: string
   email?: string
@@ -55,6 +56,16 @@ export default function DiscoveryForm() {
     }, 240)
   }
 
+  function toggleNeed(value: string) {
+    setData((d) => {
+      const current = d.needs ?? []
+      const next = current.includes(value)
+        ? current.filter((v) => v !== value)
+        : [...current, value]
+      return { ...d, needs: next }
+    })
+  }
+
   function back() {
     setStep((s) =>
       typeof s === 'number' ? (Math.max(1, s - 1) as StepId) : s
@@ -69,6 +80,7 @@ export default function DiscoveryForm() {
     const fd = new FormData(e.currentTarget)
     const payload: LeadPayload = {
       ...data,
+      need: data.needs && data.needs.length ? data.needs.join(', ') : data.need,
       name: String(fd.get('name') || ''),
       email: String(fd.get('email') || ''),
       company: String(fd.get('company') || ''),
@@ -137,14 +149,22 @@ export default function DiscoveryForm() {
         </Step>
       )}
 
-      {/* STEP 2 — Need */}
+      {/* STEP 2 — Need (multi-select) */}
       {step === 2 && (
-        <Step title="What’s the primary need?" help="Pick the one that’s most pressing.">
-          <Options
+        <Step title="What do you need help with?" help="Pick all that apply.">
+          <MultiOptions
             options={NEED_OPTIONS}
-            selected={data.need}
-            onPick={(v) => pickOption('need', v)}
+            selected={data.needs ?? []}
+            onToggle={toggleNeed}
           />
+          <button
+            type="button"
+            onClick={() => setStep(3)}
+            disabled={(data.needs ?? []).length === 0}
+            className="w-full mt-5 inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent text-bg rounded-full font-medium text-sm hover:bg-accent-bright transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Continue <span aria-hidden>{'→'}</span>
+          </button>
           <BackButton onClick={back} />
         </Step>
       )}
@@ -280,6 +300,49 @@ function Options({
                 : 'border-line bg-bg-3 text-ink hover:border-accent hover:bg-accent/5 hover:translate-x-1',
             ].join(' ')}
           >
+            {o.label}
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+function MultiOptions({
+  options,
+  selected,
+  onToggle,
+}: {
+  options: { value: string; label: string }[]
+  selected: string[]
+  onToggle: (v: string) => void
+}) {
+  return (
+    <div className="flex flex-col gap-2.5">
+      {options.map((o) => {
+        const isSelected = selected.includes(o.value)
+        return (
+          <button
+            key={o.value}
+            type="button"
+            onClick={() => onToggle(o.value)}
+            aria-pressed={isSelected}
+            className={[
+              'text-left px-5 py-4 rounded text-sm font-sans border transition-all flex items-center gap-3',
+              isSelected
+                ? 'border-accent bg-accent/10 text-accent-bright'
+                : 'border-line bg-bg-3 text-ink hover:border-accent hover:bg-accent/5',
+            ].join(' ')}
+          >
+            <span
+              aria-hidden
+              className={[
+                'w-4 h-4 rounded-[4px] border flex items-center justify-center shrink-0 text-[10px] leading-none',
+                isSelected ? 'border-accent bg-accent text-bg' : 'border-line-strong',
+              ].join(' ')}
+            >
+              {isSelected ? '✓' : ''}
+            </span>
             {o.label}
           </button>
         )

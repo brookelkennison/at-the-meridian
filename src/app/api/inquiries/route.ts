@@ -1,26 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
-import { getPayloadClient } from '@/lib/payload'
 
 // Construct lazily so a missing API key doesn't throw at module load
 // (which would make the route return an HTML error page instead of JSON).
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
-
-/* Map the dark funnel form values onto Payload's existing Inquiries schema. */
-const NEED_TO_PROJECT_TYPE: Record<string, string> = {
-  website: 'new-build',
-  seo: 'other',
-  paid: 'other',
-  crm: 'platform',
-  full: 'integration',
-}
-
-const TIMELINE_TO_PAYLOAD: Record<string, string> = {
-  now: 'asap',
-  '30': '1-3-months',
-  '60-90': '3-6-months',
-  exploring: 'flexible',
-}
 
 const REVENUE_LABELS: Record<string, string> = {
   'under-1M': 'Under $1M',
@@ -57,6 +40,17 @@ function escapeHtml(s: string): string {
   })
 }
 
+// `need` can be a single value or a comma-joined list (multi-select). Map each.
+function labelNeeds(need?: string): string {
+  if (!need) return 'Not specified'
+  return need
+    .split(',')
+    .map((n) => n.trim())
+    .filter(Boolean)
+    .map((n) => NEED_LABELS[n] || n)
+    .join(', ')
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
@@ -78,40 +72,22 @@ export async function POST(req: NextRequest) {
     }
 
     const revenueLabel = (revenue && REVENUE_LABELS[revenue]) || revenue || 'Not specified'
-    const needLabel = (need && NEED_LABELS[need]) || need || 'Not specified'
-    const timelineLabel =
-      (timeline && TIMELINE_LABELS[timeline]) || timeline || 'Not specified'
+    const needLabel = labelNeeds(need)
+    const timelineLabel = (timeline && TIMELINE_LABELS[timeline]) || timeline || 'Not specified'
 
-    /* 1. Save to Payload (best-effort — never blocks the email) */
-    let payloadId: string | number | null = null
-    try {
-      const payload = await getPayloadClient()
-      const inquiry = await payload.create({
-        collection: 'inquiries',
-        data: {
-          name,
-          email,
-          company,
-          projectType: (need && NEED_TO_PROJECT_TYPE[need]) || 'other',
-          timeline: (timeline && TIMELINE_TO_PAYLOAD[timeline]) || 'flexible',
-          currentPainPoints: notes || '',
-          projectVision: `Annual revenue: ${revenueLabel}\nPrimary need: ${needLabel}`,
-          status: 'new',
-        },
-      })
-      payloadId = inquiry.id ?? null
-    } catch (payloadError) {
-      console.error('Payload save failed (continuing with email):', payloadError)
+    if (!resend) {
+      console.error('RESEND_API_KEY not set — cannot process inquiry.')
+      return NextResponse.json(
+        { success: false, error: 'Email service is not configured.' },
+        { status: 500 },
+      )
     }
 
-    /* 2. Send Resend email */
-    if (!resend) {
-      console.warn('RESEND_API_KEY not set — skipping email notification.')
-    } else {
-      const fromEmail = process.env.LEAD_FROM_EMAIL || 'At The Meridian <hello@atthemeridian.com>'
-      const toEmail = process.env.LEAD_TO_EMAIL || 'brookelkennison@gmail.com'
+    const fromEmail = process.env.LEAD_FROM_EMAIL || 'At The Meridian <onboarding@resend.dev>'
+    const toEmail = process.env.LEAD_TO_EMAIL || 'brookelkennison@gmail.com'
 
-      const html = `
+    /* 1. Notify At The Meridian of the new lead */
+    const notifyHtml = `
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" /></head>
@@ -155,40 +131,75 @@ export async function POST(req: NextRequest) {
           : ''
       }
     </table>
-
-    <div style="margin-top:32px; padding:16px; background:#f7f5f1; border-radius:6px; font-size:12px; color:#888;">
-      ${
-        payloadId
-          ? `Saved to Payload as inquiry <strong>#${escapeHtml(String(payloadId))}</strong>.`
-          : 'Note: Payload save failed for this lead — only this email was generated.'
-      }
-    </div>
   </div>
 </body>
 </html>
-      `
+    `
 
-      const { error: resendError } = await resend.emails.send({
-        from: fromEmail,
-        to: toEmail,
-        replyTo: email,
-        subject: `New discovery call: ${name} — ${company}`,
-        html,
-      })
+    const { error: notifyError } = await resend.emails.send({
+      from: fromEmail,
+      to: toEmail,
+      replyTo: email,
+      subject: `New discovery call: ${name} — ${company}`,
+      html: notifyHtml,
+    })
 
-      if (resendError) {
-        console.error('Resend error:', resendError)
-        // We don't return 500 if Payload succeeded — the lead is still captured.
-        if (!payloadId) {
-          return NextResponse.json(
-            { success: false, error: 'Email failed to send' },
-            { status: 500 },
-          )
-        }
-      }
+    if (notifyError) {
+      console.error('Resend notification error:', notifyError)
+      return NextResponse.json(
+        { success: false, error: 'Failed to submit inquiry' },
+        { status: 500 },
+      )
     }
 
-    return NextResponse.json({ success: true, id: payloadId }, { status: 201 })
+    /* 2. Send a confirmation to the person who submitted (best-effort) */
+    const confirmHtml = `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" /></head>
+<body style="margin:0; padding:32px 16px; background:#0a0c14; font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif; color:#f5f7fb;">
+  <div style="max-width:520px; margin:0 auto; background:#11141d; border-radius:12px; padding:40px 36px; border:1px solid rgba(190,210,240,0.12);">
+    <div style="font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:#7dd3fc; font-weight:600; margin-bottom:18px;">
+      At The Meridian
+    </div>
+    <h1 style="font-weight:600; font-size:26px; line-height:1.25; margin:0 0 16px; color:#f5f7fb;">
+      Thanks, ${escapeHtml(name.split(' ')[0])} — we've got your request.
+    </h1>
+    <p style="margin:0 0 16px; color:rgba(245,247,251,0.75); font-size:15px; line-height:1.6;">
+      I'll personally review what you sent over and get back to you within one business day with
+      next steps and a time to talk.
+    </p>
+    <p style="margin:0 0 24px; color:rgba(245,247,251,0.75); font-size:15px; line-height:1.6;">
+      In the meantime, if anything comes to mind, just reply to this email — it comes straight to me.
+    </p>
+    <p style="margin:0; color:#f5f7fb; font-size:15px; line-height:1.6;">
+      — Brooke<br />
+      <span style="color:rgba(245,247,251,0.5); font-size:13px;">Founder, At The Meridian</span>
+    </p>
+  </div>
+  <p style="max-width:520px; margin:18px auto 0; text-align:center; color:rgba(245,247,251,0.35); font-size:11px; letter-spacing:0.04em;">
+    Websites &amp; systems that convert search to sale.
+  </p>
+</body>
+</html>
+    `
+
+    try {
+      const { error: confirmError } = await resend.emails.send({
+        from: fromEmail,
+        to: email,
+        replyTo: toEmail,
+        subject: 'Thanks for reaching out to At The Meridian',
+        html: confirmHtml,
+      })
+      if (confirmError) {
+        console.error('Resend confirmation error (lead still captured):', confirmError)
+      }
+    } catch (confirmErr) {
+      console.error('Confirmation email failed (lead still captured):', confirmErr)
+    }
+
+    return NextResponse.json({ success: true }, { status: 201 })
   } catch (error) {
     console.error('Error creating inquiry:', error)
     return NextResponse.json(

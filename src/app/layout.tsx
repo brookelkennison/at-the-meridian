@@ -38,19 +38,35 @@ const norwester = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: 'At The Meridian — Technology Built to Scale',
+    default: 'At The Meridian — Websites & systems that convert search to sale',
     template: '%s | At The Meridian',
   },
   description:
-    'Meridian builds successful technology — not just sites — that gives established businesses the digital infrastructure they need to scale with confidence.',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+    'We build service businesses a custom website and the growth engine around it — so the leads keep coming while you run the business.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://atthemeridian.co'),
   openGraph: {
-    title: 'At The Meridian — Technology Built to Scale',
+    title: 'At The Meridian — Websites & systems that convert search to sale',
     description:
-      'The technology agency for established businesses that have outgrown what a basic website can do.',
+      'We build service businesses a custom website and the growth engine around it — so the leads keep coming while you run the business.',
     siteName: 'At The Meridian',
+    url: '/',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'At The Meridian — websites & systems that convert search to sale.',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'At The Meridian — Websites & systems that convert search to sale',
+    description:
+      'We build service businesses a custom website and the growth engine around it — so the leads keep coming while you run the business.',
+    images: ['/og-image.png'],
   },
 }
 

@@ -54,9 +54,10 @@ function labelNeeds(need?: string): string {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { name, email, company, revenue, need, timeline, notes } = body as {
+    const { name, email, phone, company, revenue, need, timeline, notes } = body as {
       name?: string
       email?: string
+      phone?: string
       company?: string
       revenue?: string
       need?: string
@@ -108,6 +109,12 @@ export async function POST(req: NextRequest) {
         <td style="padding:14px 0; border-bottom:1px solid #eee; color:#888; width:140px; vertical-align:top;">Email</td>
         <td style="padding:14px 0; border-bottom:1px solid #eee;">
           <a href="mailto:${escapeHtml(email)}" style="color:#0369a1; text-decoration:none;">${escapeHtml(email)}</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:14px 0; border-bottom:1px solid #eee; color:#888; vertical-align:top;">Phone</td>
+        <td style="padding:14px 0; border-bottom:1px solid #eee;">
+          <a href="tel:${escapeHtml(phone || '')}" style="color:#0369a1; text-decoration:none;">${escapeHtml(phone || 'Not provided')}</a>
         </td>
       </tr>
       <tr>

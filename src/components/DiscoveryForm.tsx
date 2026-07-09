@@ -11,6 +11,7 @@ type LeadPayload = {
   timeline?: string
   name?: string
   email?: string
+  phone?: string
   company?: string
   notes?: string
 }
@@ -83,11 +84,12 @@ export default function DiscoveryForm() {
       need: data.needs && data.needs.length ? data.needs.join(', ') : data.need,
       name: String(fd.get('name') || ''),
       email: String(fd.get('email') || ''),
+      phone: String(fd.get('phone') || ''),
       company: String(fd.get('company') || ''),
       notes: String(fd.get('notes') || ''),
     }
 
-    if (!payload.name || !payload.email || !payload.company) {
+    if (!payload.name || !payload.email || !payload.phone || !payload.company) {
       setError('Please fill in all required fields.')
       setSubmitting(false)
       return
@@ -199,6 +201,13 @@ export default function DiscoveryForm() {
               name="email"
               type="email"
               placeholder="Work email"
+              required
+              className="w-full px-4 py-4 bg-bg-3 border border-line rounded text-ink placeholder:text-ink-faint text-sm focus:outline-none focus:border-accent transition-colors"
+            />
+            <input
+              name="phone"
+              type="tel"
+              placeholder="Phone number"
               required
               className="w-full px-4 py-4 bg-bg-3 border border-line rounded text-ink placeholder:text-ink-faint text-sm focus:outline-none focus:border-accent transition-colors"
             />
